@@ -1,0 +1,28 @@
+<!-- 侧边栏菜单 -->
+<div id="sideMenu" class="side-menu zoom">
+    <div class="menu-header">
+        <p>Menu</p>
+        <i class="fas fa-times" id="closeMenu"></i>
+    </div>
+    <ul>
+        <li class="nav-item" data-get=<?= BASE_URL ?>>Home</li>
+        <?= setAccountButton(); temp('avatar', null) ?>
+        <li class="nav-item" data-get="<?= temp('data-get') ?>"><?= temp('text') ?></li>
+        <li class="nav-item" data-get="cart">Shopping Cart</li>
+        <li class="nav-item" data-get="purchase_history">My Orders</li>
+        <li class="nav-item" data-get="product_info/my_wishlist">My Wishlist</li>
+        <li class="nav-item" data-get="seller">Seller</li>
+        <!-- Admin Only -->
+        <?php if (isAdmin()): ?>
+            <hr>
+            <li class="nav-item" data-get="admin/member_listing">Member Management</li> <!-- 管理用户 -->
+            <li class="nav-item" data-get="admin/product_listing">Product Management</li> <!-- 管理商品 -->
+            <li class="nav-item" data-get="admin/order_listing">Order Management</li> <!-- 管理订单 -->
+            <li class="nav-item" data-get="admin/report">Report</li> <!-- 统计信息报告 -->
+        <?php endif; ?>
+    </ul>
+
+</div>
+
+<!-- 侧边栏的遮罩 -->
+<div id="overlay" class="overlay"></div>
