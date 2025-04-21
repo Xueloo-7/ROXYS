@@ -14,7 +14,7 @@ $productModel = new Product($pdo);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 3;
 
-$pager = $productModel->findAll($limit, $page);
+$pager = $productModel->findPage($limit, $page);
 $products = $pager->getResult();
 
 // 可选：如果要展示颜色/尺寸，可以批量加载进来拼好

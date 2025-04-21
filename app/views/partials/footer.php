@@ -1,4 +1,4 @@
-    <footer class="footer" style="zoom: 75%;">
+    <footer class="footer" style="zoom: 85%;">
         <!-- Social Media Icons -->
         <div class="social-icons">
             <a href="https://www.youtube.com" target="_blank" title="YouTube" class="tooltip" data-tooltip="YouTube">

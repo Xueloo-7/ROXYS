@@ -3,7 +3,7 @@
     <div class="sales-items">
         <?php foreach ($top5sales as $product): ?>
             <!-- 每个产品展示 -->
-            <a class="sales-item" href="<?= SCRIPT_URL ?>product_info?id=<?= $product['id'] ?>">
+            <a class="sales-item" href="product_info/<?= $product['id'] ?>">
                 <div class="image-container">
                     <!-- 产品图片 -->
                     <img src="<?= BASE_URL.$product['image_url'] ?>" alt="<?= $product['name'] ?>">

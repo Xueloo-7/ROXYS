@@ -36,22 +36,13 @@
             </div>
 
             <!-- 用户账户 --> 
-            <?= setAccountButton() ?>
-            <div class="nav-item" data-get="<?= temp('data-link') ?>">
-                <div class="icon-container">
-                    <!-- 如果有获得头像 -->
-                    <?php if(isset($_SESSION['avatar_url'])): ?>
-                        <img src="<?= BASE_URL. $_SESSION['avatar_url'] ?>" class="user-avatar">
-                    <!-- 没获得头像（未登录 or 没头像） -->
-                    <?php else: ?>
-                        <i class="fas fa-user"></i>
-                    <?php endif; ?>
-                </div>
-                <span><?= temp('text') ?></span>
+            <div class="nav-item" data-get="<?= isLoggedIn() ?  'account' :  'login' ?>">
+                <div class="icon-container"><?= getUserAvatarHtml();?></div>
+                <span><?= isLoggedIn() ? "Account" : "Login" ?></span>
             </div>
 
             <!-- 菜单（点击后滑出侧边栏） -->
-            <div class="nav-item" id="menuToggle">
+            <div class="nav-item menu-toggle">
                 <div class="icon-container">
                     <i class="fas fa-bars"></i>
                 </div>

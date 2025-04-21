@@ -2,7 +2,7 @@
     <h2>🛍️ Daily Discover 🔎</h2>
     <div class="sales-items">
         <?php foreach ($products as $product): ?>
-            <a class="sales-item" href="<?= SCRIPT_URL ?>product_info?id=<?= $product['id'] ?>">
+            <a class="sales-item" href="product_info/<?= $product['id'] ?>">
                 <div class="image-container">
                     <img src="<?= $product['image_url'] ?>" alt="<?= $product['name'] ?>">
                     <p class="jump-text">Jump To Item</p>

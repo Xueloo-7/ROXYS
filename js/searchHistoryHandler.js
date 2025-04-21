@@ -13,188 +13,130 @@ function initializeSearchHistory({
     historyId,
     localStorageKey,
     filterButtonClass,
-    onSelect /* 搜索回调 */
+    onSelect
 }) {
-    document.addEventListener("DOMContentLoaded", function () {
-        // 获取搜索框和历史记录下拉框
-        const searchInput = document.getElementById(inputId);
-        const searchHistory = document.getElementById(historyId);
+    $(function () {
+        const $searchInput = $('#' + inputId);
+        const $searchHistory = $('#' + historyId);
 
-        if (!searchInput || !searchHistory) {
+        if ($searchInput.length === 0 || $searchHistory.length === 0) {
             console.warn(`Missing search input or history dropdown for ${inputId}`);
             return;
         }
 
-        // 读取 localStorage 中存储的搜索历史
         let history = JSON.parse(localStorage.getItem(localStorageKey)) || [];
-        let selectedIndex = -1; // 追踪当前选中的历史记录索引
+        let selectedIndex = -1;
 
-        /**
-         * 显示搜索历史
-         */
         function showSearchHistory() {
-            searchHistory.innerHTML = "";
+            $searchHistory.empty();
+
             if (history.length === 0) {
-                searchHistory.style.display = "none";
+                $searchHistory.hide();
                 return;
             }
 
             history.forEach((item, index) => {
-                const div = document.createElement("div");
-                div.classList.add("search-history-item");
+                const $div = $('<div>').addClass('search-history-item');
                 if (index === selectedIndex) {
-                    div.classList.add("selected"); // 高亮选中项
+                    $div.addClass('selected');
                 }
 
-                // 历史记录的图标
-                const icon = document.createElement("i");
-                icon.classList.add("fas", "fa-history");
+                const $icon = $('<i>').addClass('fas fa-history');
+                const $text = $('<span>').text(item);
+                const $deleteIcon = $('<i>').addClass('fas fa-times delete-icon').css('opacity', 0);
 
-                // 记录文本
-                const text = document.createElement("span");
-                text.textContent = item;
-
-                // 删除按钮
-                const deleteIcon = document.createElement("i");
-                deleteIcon.classList.add("fas", "fa-times", "delete-icon");
-
-                // 绑定删除事件
-                deleteIcon.addEventListener("click", (event) => {
-                    event.stopImmediatePropagation(); // 防止点击事件冒泡到 div
+                $deleteIcon.on('click', function (e) {
+                    e.stopImmediatePropagation();
                     history.splice(index, 1);
                     localStorage.setItem(localStorageKey, JSON.stringify(history));
                     selectedIndex = -1;
                     showSearchHistory();
                 });
 
-                // 鼠标悬停时显示删除按钮
-                div.addEventListener("mouseenter", () => {
-                    deleteIcon.style.opacity = 1;
-                });
-                div.addEventListener("mouseleave", () => {
-                    deleteIcon.style.opacity = 0;
-                });
+                $div.on('mouseenter', () => $deleteIcon.css('opacity', 1));
+                $div.on('mouseleave', () => $deleteIcon.css('opacity', 0));
 
-                // 点击历史记录填充到搜索框
-                div.addEventListener("click", () => {
-                    searchInput.value = item;
-                    searchHistory.style.display = "none";
+                $div.on('click', () => {
+                    $searchInput.val(item);
+                    $searchHistory.hide();
                     selectedIndex = -1;
-
-                    if (typeof onSelect === "function") {
-                        onSelect(item); // 触发自定义的搜索行为
-                    }
+                    if (typeof onSelect === "function") onSelect(item);
                 });
 
-                div.appendChild(icon);
-                div.appendChild(text);
-                div.appendChild(deleteIcon);
-                searchHistory.appendChild(div);
+                $div.append($icon, $text, $deleteIcon);
+                $searchHistory.append($div);
             });
 
-            searchHistory.style.display = "block";
+            $searchHistory.show();
         }
 
-        /**
-         * 监听搜索框的交互事件
-         */
-        searchInput.addEventListener("focus", () => {
-            selectedIndex = -1; // 重新聚焦时重置索引
+        $searchInput.on('focus', function () {
+            selectedIndex = -1;
             showSearchHistory();
         });
 
-        searchInput.addEventListener("keydown", function (event) {
-            if (event.key === "ArrowDown") {
-                // 按下箭头下移动选中项
-                event.preventDefault();
+        $searchInput.on('keydown', function (e) {
+            const value = $searchInput.val().trim();
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
                 selectedIndex = selectedIndex < history.length - 1 ? selectedIndex + 1 : 0;
                 showSearchHistory();
-            } else if (event.key === "ArrowUp") {
-                // 按下箭头上移动选中项
-                event.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
                 selectedIndex = selectedIndex > 0 ? selectedIndex - 1 : -1;
                 showSearchHistory();
-            } else if (event.key === "Enter") {
-                // 回车键选择搜索历史
+            } else if (e.key === 'Enter') {
                 if (selectedIndex >= 0 && selectedIndex < history.length) {
-                    searchInput.value = history[selectedIndex];
-                    searchHistory.style.display = "none";
-
-                    if (typeof onSelect === "function") {
-                        onSelect(history[selectedIndex]); // 触发自定义的搜索行为
-                    }
+                    $searchInput.val(history[selectedIndex]);
+                    $searchHistory.hide();
+                    if (typeof onSelect === "function") onSelect(history[selectedIndex]);
                 } else {
-                    const value = searchInput.value.trim(); // 确保 value 在整个 else 代码块都可用
-                    if (value !== "") {
-                        // 新增搜索记录
+                    if (value !== '') {
                         if (!history.includes(value)) {
                             history.unshift(value);
                             if (history.length > 10) history.pop();
                             localStorage.setItem(localStorageKey, JSON.stringify(history));
                         }
                     }
-                    if (typeof onSelect === "function") {
-                        onSelect(value); // **按回车触发自定义行为**
-                    }
-                    selectedIndex = -1;
-                }                
-            }  else if (event.key === "Backspace") {
-                // 退格键时显示历史记录
-                if (searchInput.value.length <= 1) {
-                    showSearchHistory();
+                    if (typeof onSelect === "function") onSelect(value);
                 }
-                return;
+                selectedIndex = -1;
+            } else if (e.key === 'Backspace') {
+                if (value.length <= 1) showSearchHistory();
             }
 
-            // 只在输入内容时隐藏搜索历史
-            if (searchInput.value.trim() !== "") {
-                searchHistory.style.display = "none";
-            }
+            if (value !== '') $searchHistory.hide();
         });
 
-        /**
-         * 监听点击事件，点击其他地方时隐藏搜索历史
-         */
-        document.addEventListener("click", function (event) {
-            if (!searchInput.contains(event.target) && !searchHistory.contains(event.target)) {
-                searchHistory.style.display = "none";
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest($searchInput).length && !$(e.target).closest($searchHistory).length) {
+                $searchHistory.hide();
             }
         });
 
-        /**
-         * 处理筛选按钮逻辑
-         */
-        const filterButtons = document.querySelectorAll(`.${filterButtonClass}`);
+        const $filterButtons = $('.' + filterButtonClass);
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.stopPropagation();
+        $filterButtons.each(function () {
+            const $button = $(this);
 
-                const filterBox = button.querySelector('.filter-box');
-                if (!filterBox) return;
+            $button.on('click', function (e) {
+                e.stopPropagation();
+                const $filterBox = $button.find('.filter-box');
 
-                // 关闭其他筛选框
-                document.querySelectorAll('.filter-box').forEach(box => {
-                    if (box !== filterBox) box.style.display = 'none';
-                });
+                if ($filterBox.length === 0) return;
 
-                // 切换当前筛选框的显示状态
-                filterBox.style.display = (filterBox.style.display === 'flex') ? 'none' : 'flex';
+                $('.filter-box').not($filterBox).hide();
+                $filterBox.css('display', $filterBox.css('display') === 'flex' ? 'none' : 'flex');
             });
         });
 
-        // 点击页面其他地方时关闭所有筛选框
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.filter-box').forEach(box => {
-                box.style.display = 'none';
-            });
+        $(document).on('click', function () {
+            $('.filter-box').hide();
         });
 
-        // 阻止点击筛选框内部时关闭
-        document.querySelectorAll('.filter-box').forEach(filterBox => {
-            filterBox.addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
+        $('.filter-box').on('click', function (e) {
+            e.stopPropagation();
         });
     });
 }

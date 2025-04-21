@@ -125,7 +125,7 @@
             <p>Category</p>
             <div class="category">
                 <?php foreach ($category as $cat => $img_url): ?>
-                    <a href="<?= SCRIPT_URL ?>search_result?search=<?= strtolower(urlencode($cat)) ?>" class="category-box">
+                    <a href="search_result/<?= strtolower(urlencode($cat)) ?>" class="category-box">
                         <img src="<?= BASE_URL ?>image/category/<?= $img_url ?>" alt="<?= htmlspecialchars($cat) ?>">
                         <p><?= htmlspecialchars($cat) ?></p>
                     </a>

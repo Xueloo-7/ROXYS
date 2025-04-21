@@ -37,8 +37,7 @@ if (!empty($base_path)) {
 
 define('BASE_URL', rtrim($base_url, '/') . '/');
 define('ROOT_PATH', dirname(__DIR__, 2) . '/'); 
-define('API_URL', BASE_URL . 'api/'); 
-define('SCRIPT_PATH', ROOT_PATH . 'scripts/'); 
+define('API_URL', BASE_URL . 'app/api/'); 
 //define('SCRIPT_URL', BASE_URL . 'scripts/');
 define('SCRIPT_URL', BASE_URL);
 define('BASE_URI', "/ROXYS/");

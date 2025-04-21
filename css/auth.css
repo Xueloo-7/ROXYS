@@ -1,0 +1,355 @@
+body {
+    font-family: Arial, sans-serif;
+    animation: colorTransition 5s infinite alternate ease-in-out;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes colorTransition {
+    0% {
+        background-color: rgba(172, 232, 255, 1); /* 初始色 */
+    }
+    50% {
+        background-color: rgba(199, 243, 255, 1); /* 中间色 */
+    }
+    100% {
+        background-color: rgba(214, 249, 255, 1); /* 结束色 */
+    }
+}
+/* Login page styles */
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+}
+
+.login-form input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background: #83f5d0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background: #6edbb5;
+}
+
+/* 隐藏autofill背景（我觉得不好看 */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
+
+
+.background-image{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+
+    width: 1550px;
+    height: 800px;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+
+    filter: brightness(0.75) blur(0px);
+    z-index: -10;
+}
+.box-container.login-version {
+    height: 500px;
+}
+
+.box-container.register-version {
+    height: 580px;
+}
+
+.box-container{
+    /* 居中 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+
+    width: 400px;
+
+    .quit {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        font-size: 50px;
+        width: 50px;
+        height: 50px;
+    
+        background-color: black;
+        border-bottom-left-radius: 20px;
+        border: none;
+    
+        /* 让图标居中 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .quit .fa-solid.fa-xmark {
+        color: white;
+        font-size: 30px;
+    }
+    
+
+    .box{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+
+        overflow: hidden;
+        
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+
+        background: linear-gradient(to bottom right, rgba(172, 232, 255, 1) 0%, rgba(199, 243, 255, 1) 30%, rgba(214, 249, 255, 1) 64%, rgba(227, 255, 255, 1) 100%);
+        backdrop-filter: opacity(.5);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        border: 2px solid grey;
+
+        z-index: -9;
+    }
+
+    h1{
+        display: block;
+        text-align: center;
+
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+    .info-container{
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+
+        label{
+            display: block;
+            width: 300px;
+            font-size: 14px;
+
+            margin-bottom: 10px;
+        }
+        input{
+            background: transparent;
+            width: 300px;
+            border: none;
+            outline: none;
+
+            color: black;
+            font-size: 16px;
+
+            padding-left: 10px;
+        }
+        input::placeholder {
+            color: rgb(50, 50, 50);
+            font-size: 16px;
+        }
+
+        .icon{
+            color :#162a37;
+            font-size: 20px;
+        }
+
+        .line{
+            border: none; 
+            height: 1px;        
+            background-color: #162a37;
+            width: 100%;
+        }
+    }
+
+    .remember{
+        position: absolute;
+        left: 0px;
+        padding-left: 15px;
+        margin-top: 15px;
+
+        color :#162a37;
+        font-size: 15px;
+    }
+
+    .forgot-password{
+        position: absolute;
+        right: 0px;
+        padding-right: 30px;
+        margin-top: 15px;
+
+        font-size: 15px;
+
+        a{
+            text-decoration: none;
+            color :#162a37;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+    }
+
+    .create-account{
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+
+        width: 80%;
+        text-align: center;
+
+        a{
+            text-decoration: none;
+            color:#162a37;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+    }
+    .jump-to-login{
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+
+        width: 80%;
+        text-align: center;
+
+        a{
+            text-decoration: none;
+            color:#162a37;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+    }
+
+    #submit-hint {
+        display: block; /* 初始隐藏 */
+
+        position: absolute;
+        bottom: 125px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+
+        text-align: center;
+        
+        color: red;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+.submit-button{
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+
+    width: 90%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+
+    background-color: #162a37;;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* 按钮动画效果 */
+.submit-button {
+    transition: background-color 0.3s ease, width 0.2s ease, height 0.2s ease;
+}
+
+/* 悬停时：变宽变高 */
+.submit-button:hover {
+    background-color: #1d3a52;
+}
+
+/* 点击时：略微缩小 */
+.submit-button:active {
+    width: 90%;
+    height: 45px;
+    transform: translate(-50%, -50%); 
+}
+
+/* 关闭按钮动画 */
+.quit {
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
+}
+.quit .fa-solid.fa-xmark{
+    transition: transform 0.3s ease;
+}
+
+/* 悬停时，背景变红 + 旋转 */
+.quit:hover {
+    background-color: red;
+    transform: scale(1.2);
+
+    .fa-solid.fa-xmark{
+        transform: rotate(90deg);
+    }
+}
+
+/* 关闭按钮点击时缩小 */
+.quit:active {
+    transform: scale(1);
+}
+
+/* 登录框淡入动画 */
+.box {
+    animation: fadeIn 1s cubic-bezier(0.15, 0.85, 0.35, 1);
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}

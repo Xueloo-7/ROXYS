@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once __DIR__.'/app/config/URL_config.php';
 require_once __DIR__.'/functions.php';
 
@@ -12,3 +14,9 @@ if (!defined('IS_API')) {
 require_once __DIR__.'/app/database/Database.php';
 require_once __DIR__.'/app/config/DatabaseConfig.php';
 $pdo = (new Database(DatabaseConfig::getDatabaseConfig()))->getConnection();
+
+// setup login status
+// $_SESSION['user']=[
+//     'avatar'=>'image/avatar/Pandora.jpg',
+//     'role'=>'admin',
+// ];

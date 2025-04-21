@@ -1,13 +1,12 @@
 <!-- 侧边栏菜单 -->
-<div id="sideMenu" class="side-menu zoom">
+<div class="sideMenu zoom">
     <div class="menu-header">
         <p>Menu</p>
-        <i class="fas fa-times" id="closeMenu"></i>
+        <i class="fas fa-times closeMenu"></i>
     </div>
     <ul>
         <li class="nav-item" data-get=<?= BASE_URL ?>>Home</li>
-        <?= setAccountButton(); temp('avatar', null) ?>
-        <li class="nav-item" data-get="<?= temp('data-get') ?>"><?= temp('text') ?></li>
+        <li class="nav-item" data-get="<?= isLoggedIn() ?  'account' :  'login' ?>"><?= isLoggedIn() ? "Account" : "Login"?></li>
         <li class="nav-item" data-get="cart">Shopping Cart</li>
         <li class="nav-item" data-get="purchase_history">My Orders</li>
         <li class="nav-item" data-get="product_info/my_wishlist">My Wishlist</li>
@@ -25,4 +24,4 @@
 </div>
 
 <!-- 侧边栏的遮罩 -->
-<div id="overlay" class="overlay"></div>
+<div class="overlay"></div>

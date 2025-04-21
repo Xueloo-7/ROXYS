@@ -17,3 +17,19 @@
 
 </head>
 <body>
+
+    <!-- flash message setup -->
+    <?php if (!empty($_SESSION['flash'])): ?>
+        <!-- set flash type and message -->
+        <div class="flash-message <?= $_SESSION['flash']['type'] ?>">
+            <?= htmlspecialchars($_SESSION['flash']['message']) ?>
+        </div>
+        <script>
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $('.flash-message').addClass('hide');
+                }, 3000);
+            });
+        </script>
+    <!-- flash ended -->
+    <?php unset($_SESSION['flash']); endif; ?>

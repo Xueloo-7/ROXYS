@@ -11,7 +11,15 @@ class Product {
         $this->pdo = $pdo;
     }
 
-    public function findAll(int $limit, int $page, array $filters = []): SimplePager {
+    public function findAll(): array {
+        $sql = "SELECT * FROM products";
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+        $product = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $product ?: null;
+    }
+
+    public function findPage(int $limit, int $page, array $filters = []): SimplePager {
         $sql = "SELECT * FROM products";
         $params = [];
         $where = $this->buildFilterWhere($filters, $params);

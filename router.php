@@ -13,11 +13,16 @@ $query = $uri['query'] ?? '';
 
 // 定义routes，维护所有网址的跳转
 $routes = [
-    '' => 'controllers/HomeController.php',
-    '{page}' => 'controllers/HomeController.php',
-    'about' => 'services/about.php',
-    'contact' => 'services/contact.php',
-    'help' => 'services/help.php',
+    '' => 'controller/HomeController.php',
+    'about' => 'service/about.php',
+    'contact' => 'service/contact.php',
+    'help' => 'service/help.php',
+    'login' => 'controller/LoginController.php',
+    'logout' => 'controller/LoginController.php',
+    'register' => 'controller/LoginController.php',
+    'account' => 'controller/AccountController.php',
+
+    // 更多写法 example
     'product/id/{id}' => 'controllers/product.php',
     'product/category/{category}' => 'controllers/product.php',
     'product/id/{id}/category/{category}' => 'controllers/product.php',

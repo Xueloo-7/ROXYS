@@ -233,7 +233,7 @@ header {
 }
 
 /* 侧边栏基础样式 */
-.side-menu {
+.sideMenu {
     position: fixed;
     top: 0;
     right: 0;
@@ -332,7 +332,7 @@ header {
 }
 
 /* 侧边栏打开时 */
-.side-menu.open {
+.sideMenu.open {
     transform: translateX(0);
 }
 
@@ -381,12 +381,12 @@ Footer
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: #fff;
     color: #555;
-    font-size: 18px;
+    font-size: 24px;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-decoration: none;
@@ -611,4 +611,53 @@ Search Bar
         cursor: pointer;
     }
     
+}
+
+/* 
+============================================================================
+Flash
+============================================================================ 
+*/
+
+/* flash message */
+.flash-message {
+    zoom:50%;
+    position: fixed;
+    top: 200px;
+    left: 50%; transform: translateX(-50%);
+    width: fit-content;
+    padding: 30px 20px;
+    border-radius: 5px;
+    font-size: 38px;
+    text-align: center;
+    color: white;
+    background-color: #2ecc71;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    animation: fadein 0.4s ease-out;
+    z-index: 9999;
+}
+.flash-message.error { background-color: #e74c3c; }
+.flash-message.warning { background-color: #f39c12; }
+.flash-message.info { background-color: #3498db; }
+.flash-message.hide {
+    animation: fadeout 0.4s ease-in forwards;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes fadeout {
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-100px);
+    }
 }

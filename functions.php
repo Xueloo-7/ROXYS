@@ -4,6 +4,42 @@
 // Helper
 // ============================================================================
 
+// Is GET request?
+function is_get() {
+    return $_SERVER['REQUEST_METHOD'] == 'GET';
+}
+
+// Is POST request?
+function is_post() {
+    return $_SERVER['REQUEST_METHOD'] == 'POST';
+}
+
+// Obtain GET parameter
+function get($key, $value = null) {
+    $value = $_GET[$key] ?? $value;
+    return is_array($value) ? array_map('trim', $value) : trim($value);
+}
+
+// Obtain POST parameter
+function post($key, $value = null) {
+    $value = $_POST[$key] ?? $value;
+    return is_array($value) ? array_map('trim', $value) : trim($value);
+}
+
+// Obtain REQUEST (GET and POST) parameter（Not Recommanded)
+function req($key, $value = null) {
+    $value = $_REQUEST[$key] ?? $value;
+    return is_array($value) ? array_map('trim', $value) : trim($value);
+}
+
+// Redirect to URL
+function redirect($url = null) {
+    $url ??= $_SERVER['REQUEST_URI'];
+    header("Location: $url");
+    exit();
+}
+
+// Set or get temporary session variable
 function temp($key, $value = null, $delete = true) {
     if ($value !== null) {
         $_SESSION["temp_$key"] = $value;
@@ -15,6 +51,24 @@ function temp($key, $value = null, $delete = true) {
             unset($_SESSION["temp_$key"]);
         return $value;
     }
+}
+
+function flash_msg($message, $type = 'success') {
+    $_SESSION['flash'] = [
+        'message' => $message,
+        'type' => $type, // success, error, warning, info
+    ];
+}
+
+/**
+ * 获取当前请求的路由路径（去除 BASE_URI 和前后斜杠）
+ * 例如 /ROXYS/login?id=5 => login
+ * @return string
+ */
+function getCurrentRoutePath(): string {
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $path = str_replace(BASE_URI, '', $path); // 去除项目子目录
+    return trim($path, '/'); // 去除前后斜杠
 }
 
 // ============================================================================
@@ -58,27 +112,24 @@ function formatStatus($status){
 }
 
 // ============================================================================
-// Header Helper
+// Auth Helper
 // ============================================================================
 
-function setAccountButton() {
-    // 根据是否登录，设置相应的链接、文本和头像
-    $loggedIn = isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'];
-
-    // 设置链接、按钮文本和头像
-    temp('data-link', $loggedIn ? SCRIPT_URL . 'user_profile' : SCRIPT_URL . 'login');
-    temp('text', $loggedIn ? "Account" : "Login");
-    temp('avatar', $loggedIn ? getAvatarUrl() : null);
+function isLoggedIn(): bool {
+    return isset($_SESSION['user']);
 }
 
-function getAvatarUrl() {
-    // 从数据库查询用户头像（暂时用默认头像代替）
-    // TODO: 替换为实际从数据库获取头像的逻辑
-    return BASE_URL . '/image/default_avatar.gif';
+function isAdmin(): bool {
+    return isLoggedIn() && $_SESSION['user']['role'] === 'admin';
 }
 
-function isAdmin(){
-    return isset($_SESSION['is_admin']) && $_SESSION['is_admin'];
+function getUserAvatarHtml() {
+    if (!isLoggedIn()) return '<i class="fas fa-user"></i>';
+    
+    $avatar = $_SESSION['user']['avatar'] ?? '';
+    if (!$avatar) return '<i class="fas fa-user"></i>';
+    
+    return '<img src="' . BASE_URL . $avatar . '" class="user-avatar">';
 }
 
 // ============================================================================
