@@ -67,33 +67,56 @@ class SimplePager {
      *      <a href='?page=4'>Next</a>
      *      <a href='?page=10'>Last</a>
      *  </nav>
-     * @param string href, 带参数，如$href='limit=10'，就会出现?page=1&limit=10
+     * @param string href, 带参数，如$href='limit=10'，就会出现?limit=10
      * @param string attr, nav的属性，如$attr='style="text-align:center"', 相当于<nav class="pager" style="text-align:center">
      */
-    public function render(string $href = '', string $attr = '') {
+    public function render(string $href = '', string $attr = '', string $basePath = '') {
+        // 如果页面总数小于等于1，返回空
         if ($this->page_count <= 1) return '';
-
+        
+        // 如果没有传递basePath，使用当前请求的路径
+        if (!$basePath) {
+            $basePath = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        }
+        
+        // 构建HTML的开始部分
         $html = "<nav class='pager' $attr>";
-
-        $href = $href ? "&$href" : '';
-
+        
+        // 计算前一页和后一页的页码
         $prev = max($this->page - 1, 1);
         $next = min($this->page + 1, $this->page_count);
-
-        $html .= "<a href='?page=1$href'>First</a>";
-        $html .= "<a href='?page=$prev$href'>Prev</a>";
-
+        
+        // 获取当前页面的查询字符串部分，并移除 "page" 参数
+        $urlParams = $_GET;
+        unset($urlParams['page']);
+        $queryString = http_build_query($urlParams);
+        
+        // 如果查询字符串不为空，确保参数前有?或&，否则保持空
+        if ($queryString) {
+            $queryString = '?' . $queryString;
+        }
+        
+        // 渲染"首页"和"上一页"链接
+        $html .= "<a href='" . BASE_URL . "$basePath/1$queryString'>First</a>";
+        $html .= "<a href='" . BASE_URL . "$basePath/$prev$queryString'>Prev</a>";
+        
+        // 渲染页码链接
         $start = max(1, $this->page - 2);
         $end = min($this->page + 2, $this->page_count);
         for ($i = $start; $i <= $end; $i++) {
             $active = $i == $this->page ? "class='active'" : '';
-            $html .= "<a href='?page=$i$href' $active>$i</a>";
+            $html .= "<a href='" . BASE_URL . "$basePath/$i$queryString' $active>$i</a>";
         }
-
-        $html .= "<a href='?page=$next$href'>Next</a>";
-        $html .= "<a href='?page=$this->page_count$href'>Last</a>";
-
+        
+        // 渲染"下一页"和"最后一页"链接
+        $html .= "<a href='" . BASE_URL . "$basePath/$next$queryString'>Next</a>";
+        $html .= "<a href='" . BASE_URL . "$basePath/{$this->page_count}$queryString'>Last</a>";
+        
+        // 结束HTML并返回
         $html .= "</nav>";
         return $html;
     }
+    
+    
+       
 }

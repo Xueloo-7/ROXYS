@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2025 at 05:18 PM
+-- Generation Time: Apr 23, 2025 at 04:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `web_db`
+-- Database: `roxy_db`
 --
 
 -- --------------------------------------------------------
@@ -51,8 +51,6 @@ CREATE TABLE `products` (
   `stock` int(11) NOT NULL,
   `discount` int(11) DEFAULT NULL,
   `sold` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `rating` decimal(3,2) NOT NULL DEFAULT 0.00,
-  `reviews` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `details` varchar(500) DEFAULT NULL,
   `image_url` varchar(500) DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL
@@ -62,17 +60,15 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `original_price`, `description`, `stock`, `discount`, `sold`, `rating`, `reviews`, `details`, `image_url`, `category`) VALUES
-(1, 'Brixton Brown Flatcap', 49.99, 69.99, 'A classic brown flat cap from Brixton.', 100, 30, 20, 4.80, 125, 'Function: Wear resistant\r\nClosing method: Lace up\r\nStyle: Fashion\r\nSeason: Spot And Dring\r\nflat cap style: Round cicle flat\r\nOccasion: Fashion and design', 'image\\product\\Caps\\Flat Caps\\Brixton Brown Flatcap Cap.webp', 'cap'),
-(2, 'Adidas Classics Women T-Shirt', 39.99, 59.99, 'Comfortable Adidas t-shirt for women.', 150, 33, 2325, 4.60, 98, 'Function: Built with ultra wear-resistant materials, this item offers extended durability for long-term use.\r\nClosing method: Traditional lace-up style ensures a custom fit and all-day comfort.\r\nStyle: Sleek and sporty, perfect for pairing with both streetwear and casual outfits.\r\nSeason: Ideal for spring, summer, and early autumn wear.\r\nFlat cap style: The rounded flat cap design brings a touch of vintage flair to a modern look.\r\nOccasion: Great for daily use, city walking, or creative photosho', 'image\\product\\Clothes\\Adidas Classics 4 woman T-Shirt.webp', 'clothes'),
-(3, 'Gucci Belted Pleated Dress', 799.99, 999.99, 'Elegant Gucci dress with pleated design.', 50, 20, 5650, 4.90, 200, 'Function: Reinforced with abrasion-resistant fibers to withstand rugged conditions.\r\nClosing method: Lace-up closure adds security and a sporty look.\r\nStyle: Minimalist aesthetic for a timeless fashion vibe.\r\nSeason: Suitable for cool and mild seasons.\r\nFlat cap style: Circular flat brim gives a bold statement.\r\nOccasion: Designed for art fairs, weekend walks, or streetwear looks.\",\"https://picsum.photos/seed/3/300/300,https://picsum.photos/seed/4/300/300', 'image/product/Dresses/Gucci Belted pleated cotton dresses.webp', 'dress'),
-(4, 'Men\'s Fashionable Long Pants', 59.99, 79.99, 'Stylish long pants for men.', 120, 25, 87, 4.70, 110, 'Function: Crafted for flexibility and resistance to wear, ensuring comfort and longevity.\r\nClosing method: Classic lace-up system for snug fit.\r\nStyle: Urban-inspired, tailored for trend-conscious individuals.\r\nSeason: Designed for transitional weather.\r\nFlat cap style: Smooth round shape complements most face shapes.\r\nOccasion: Ideal for fashion shoots, events, or casual hangouts.\",\"https://picsum.photos/seed/5/300/300,https://picsum.photos/seed/6/300/300', 'image/product/LongShortPants/Long Pants/Men\'s Fashionable pants.webp', 'pants'),
-(5, 'Rollerblade Grey Men\'s Shorts', 34.99, 49.99, 'Casual grey shorts with pockets.', 90, 30, 22, 4.50, 85, 'Function: Durable design suitable for outdoor activity and all-day wear.\r\nClosing method: Adjustable lace system for a personalized fit.\r\nStyle: Modern cut with a vintage twist.\r\nSeason: Versatile for spring and fall.\r\nFlat cap style: Round flat cap with reinforced seams.\r\nOccasion: Wear it to markets, campus, or creative events.\",\"https://picsum.photos/seed/7/3000/300,https://picsum.photos/seed/8/200/320', 'image/product/LongShortPants/Short pants/Rollerblade Grey Men\'s Shorts with Pocket Grey.webp', 'pants'),
-(6, 'Adidas Boxer Underwear for Men', 89.99, 129.99, 'High-quality shoes with detailed finishing.', 70, 20, 18, 4.60, 77, 'Function: Combines comfort with long-term endurance in daily use.\r\nClosing method: Secure lace-up entry.\r\nStyle: Contemporary cap with subtle urban cues.\r\nSeason: Meant for sunny or breezy weather.\r\nFlat cap style: Clean round silhouette.\r\nOccasion: Pair it with smart-casual outfits or outdoor wear.\",\"https://picsum.photos/seed/9/300/300,https://picsum.photos/seed/10/300/300', 'image\\product\\Underclothes\\Men\'s\\Adidas Boxer Underwear for Men.jpeg', 'underclothes'),
-(7, 'Christian Louboutin High Heels', 999.99, 1299.99, 'Luxury high heels by Christian Louboutin.', 40, 23, 10, 4.90, 140, 'Function: Engineered to resist friction and surface damage.\r\nClosing method: Easy-to-adjust laces ensure a perfect fit.\r\nStyle: Refined streetwear influence.\r\nSeason: Best for spring-to-summer transition.\r\nFlat cap style: Balanced circle shape for comfort and style.\r\nOccasion: Street fashion, music festivals, or quick errands.\",\"https://picsum.photos/seed/11/300/300,https://picsum.photos/seed/12/300/300', 'image/product/Shoes/HighHeels/Christian Louboutin Sourse high heels.webp', 'shoe'),
-(8, 'Dior Running Shoes', 299.99, 399.99, 'Premium running shoes by Dior.', 80, 25, 523, 4.80, 150, 'Function: Wear resistant\r\nClosing method: Lace up\r\nStyle: Sports\r\nSeason: Spring and Autumn\r\nShoe toe style: Round toe\r\nOccasion: Sports and Leisure', 'image/product/Shoes/RunningShoes/dior shoes.jpeg', 'shoe'),
-(9, 'Adidas Women\'s Ankle Socks', 19.99, 29.99, 'Comfortable ankle socks from Adidas.', 200, 33, 50, 4.40, 90, 'Function: Made with materials that withstand intensive daily use.\r\nClosing method: Customizable lacing structure.\r\nStyle: Urban cool with minimalist touches.\r\nSeason: Great for variable temperatures.\r\nFlat cap style: Neutral round frame.\r\nOccasion: Use it at cafes, trips, or city walks.\",\"https://picsum.photos/seed/13/300/300,https://picsum.photos/seed/14/300/300', 'image/product/Socks/Women\'s/Adidas Women\'s Anikle Socks.jpeg', 'socks'),
-(10, 'Bellroy Laneway Everyday Bumbag', 79.99, 99.99, 'A stylish everyday bag for men.', 60, 20, 124, 4.70, 130, 'Function: Scratch-resistant and breathable design.\r\nClosing method: Traditional lace with secure eyelets.\r\nStyle: Balanced between comfort and modern appeal.\r\nSeason: Best worn in transitional climates.\r\nFlat cap style: Defined circle base for style balance.\r\nOccasion: Excellent for chill hangouts and shopping runs.\",\"https://picsum.photos/seed/19/300/300,https://picsum.photos/seed/20/300/30', 'image/product/WomenManBags/Men\'s Bags/Bellroy Laneway- Everyday Bumbag.webp', 'bag');
+INSERT INTO `products` (`id`, `name`, `price`, `original_price`, `description`, `stock`, `discount`, `sold`, `details`, `image_url`, `category`) VALUES
+(3, 'Gucci Belted Pleated Dress', 799.99, 999.99, 'Elegant Gucci dress with pleated design.', 50, 20, 5650, 'Function: Reinforced with abrasion-resistant fibers to withstand rugged conditions.\r\nClosing method: Lace-up closure adds security and a sporty look.\r\nStyle: Minimalist aesthetic for a timeless fashion vibe.\r\nSeason: Suitable for cool and mild seasons.\r\nFlat cap style: Circular flat brim gives a bold statement.\r\nOccasion: Designed for art fairs, weekend walks, or streetwear looks.\",\"https://picsum.photos/seed/3/300/300,https://picsum.photos/seed/4/300/300', 'image/product/Dresses/Gucci Belted pleated cotton dresses.webp', 'dress'),
+(4, 'Men\'s Fashionable Long Pants', 59.99, 79.99, 'Stylish long pants for men.', 120, 25, 87, 'Function: Crafted for flexibility and resistance to wear, ensuring comfort and longevity.\r\nClosing method: Classic lace-up system for snug fit.\r\nStyle: Urban-inspired, tailored for trend-conscious individuals.\r\nSeason: Designed for transitional weather.\r\nFlat cap style: Smooth round shape complements most face shapes.\r\nOccasion: Ideal for fashion shoots, events, or casual hangouts.\",\"https://picsum.photos/seed/5/300/300,https://picsum.photos/seed/6/300/300', 'image/product/LongShortPants/Long Pants/Men\'s Fashionable pants.webp', 'pants'),
+(5, 'Rollerblade Grey Men\'s Shorts', 34.99, 49.99, 'Casual grey shorts with pockets.', 90, 30, 22, 'Function: Durable design suitable for outdoor activity and all-day wear.\r\nClosing method: Adjustable lace system for a personalized fit.\r\nStyle: Modern cut with a vintage twist.\r\nSeason: Versatile for spring and fall.\r\nFlat cap style: Round flat cap with reinforced seams.\r\nOccasion: Wear it to markets, campus, or creative events.\",\"https://picsum.photos/seed/7/3000/300,https://picsum.photos/seed/8/200/320', 'image/product/LongShortPants/Short pants/Rollerblade Grey Men\'s Shorts with Pocket Grey.webp', 'pants'),
+(6, 'Adidas Boxer Underwear for Men', 89.99, 129.99, 'High-quality shoes with detailed finishing.', 70, 20, 18, 'Function: Combines comfort with long-term endurance in daily use.\r\nClosing method: Secure lace-up entry.\r\nStyle: Contemporary cap with subtle urban cues.\r\nSeason: Meant for sunny or breezy weather.\r\nFlat cap style: Clean round silhouette.\r\nOccasion: Pair it with smart-casual outfits or outdoor wear.\",\"https://picsum.photos/seed/9/300/300,https://picsum.photos/seed/10/300/300', 'image\\product\\Underclothes\\Men\'s\\Adidas Boxer Underwear for Men.jpeg', 'underclothes'),
+(7, 'Christian Louboutin High Heels', 999.99, 1299.99, 'Luxury high heels by Christian Louboutin.', 40, 23, 10, 'Function: Engineered to resist friction and surface damage.\r\nClosing method: Easy-to-adjust laces ensure a perfect fit.\r\nStyle: Refined streetwear influence.\r\nSeason: Best for spring-to-summer transition.\r\nFlat cap style: Balanced circle shape for comfort and style.\r\nOccasion: Street fashion, music festivals, or quick errands.\",\"https://picsum.photos/seed/11/300/300,https://picsum.photos/seed/12/300/300', 'image/product/Shoes/HighHeels/Christian Louboutin Sourse high heels.webp', 'shoe'),
+(8, 'Dior Running Shoes', 299.99, 399.99, 'Premium running shoes by Dior.', 80, 25, 523, 'Function: Wear resistant\r\nClosing method: Lace up\r\nStyle: Sports\r\nSeason: Spring and Autumn\r\nShoe toe style: Round toe\r\nOccasion: Sports and Leisure', 'image/product/Shoes/RunningShoes/dior shoes.jpeg', 'shoe'),
+(9, 'Adidas Women\'s Ankle Socks', 19.99, 29.99, 'Comfortable ankle socks from Adidas.', 200, 33, 50, 'Function: Made with materials that withstand intensive daily use.\r\nClosing method: Customizable lacing structure.\r\nStyle: Urban cool with minimalist touches.\r\nSeason: Great for variable temperatures.\r\nFlat cap style: Neutral round frame.\r\nOccasion: Use it at cafes, trips, or city walks.\",\"https://picsum.photos/seed/13/300/300,https://picsum.photos/seed/14/300/300', 'image/product/Socks/Women\'s/Adidas Women\'s Anikle Socks.jpeg', 'socks'),
+(13, 'test', 49.99, 0, 'test', 100, 1, 0, 'test', 'test', 'cap');
 
 -- --------------------------------------------------------
 
@@ -99,8 +95,8 @@ INSERT INTO `product_color` (`id`, `product_id`, `color_code`) VALUES
 (8, 8, '#1E90FF'),
 (9, 9, '#000000'),
 (11, 5, '#8B4513'),
-(39, 2, '#8B4513'),
-(44, 1, '');
+(45, 13, '#000000'),
+(46, 13, '#FFFFFF');
 
 -- --------------------------------------------------------
 
@@ -115,24 +111,23 @@ CREATE TABLE `product_review` (
   `rating` decimal(2,1) NOT NULL,
   `review_text` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_review`
 --
 
 INSERT INTO `product_review` (`id`, `product_id`, `user_id`, `rating`, `review_text`, `created_at`) VALUES
-(2, 2, 102, 4.5, 'Very comfortable and stylish.', '2025-03-17 12:00:12'),
-(3, 3, 103, 4.8, 'Gucci never disappoints, stunning dress.', '2025-03-17 12:00:12'),
-(4, 4, 104, 4.6, 'Good fit, material feels premium.', '2025-03-17 12:00:12'),
-(5, 5, 105, 4.2, 'Nice shorts, but a bit loose.', '2025-03-17 12:00:12'),
-(6, 6, 106, 4.5, 'Excellent finishing on these shoes.', '2025-03-17 12:00:12'),
-(7, 7, 107, 5.0, 'Best heels ever, worth every penny!', '2025-03-17 12:00:12'),
-(8, 8, 108, 4.9, 'Super comfortable for running.', '2025-03-17 12:00:12'),
-(9, 9, 109, 4.3, 'Decent quality socks, very soft.', '2025-03-17 12:00:12'),
-(10, 10, 110, 4.7, 'Perfect size bag, great for daily use.', '2025-03-17 12:00:12'),
-(12, 1, 1, 4.5, 'test 1', '2025-04-20 05:09:49'),
-(14, 1, 1, 4.8, 'test 3', '2025-04-20 05:10:28');
+(3, 3, 2, 4.8, 'Gucci never disappoints, stunning dress.', '2025-03-17 12:00:12'),
+(4, 4, 3, 4.6, 'Good fit, material feels premium.', '2025-03-17 12:00:12'),
+(5, 5, 2, 4.2, 'Nice shorts, but a bit loose.', '2025-03-17 12:00:12'),
+(6, 6, 1, 4.5, 'Excellent finishing on these shoes.', '2025-03-17 12:00:12'),
+(7, 7, 2, 5.0, 'Best heels ever, worth every penny!', '2025-03-17 12:00:12'),
+(8, 8, 3, 4.9, 'Super comfortable for running.', '2025-03-17 12:00:12'),
+(9, 9, 2, 4.3, 'Decent quality socks, very soft.', '2025-03-17 12:00:12'),
+(15, 3, 2, 1.0, 's', '2025-04-21 16:16:45'),
+(16, 3, 16, 1.0, 'Wow this is so beautiful, but i dont want to but hahaha', '2025-04-21 16:18:04'),
+(17, 8, 2, 5.0, '我喜欢这个颜色~', '2025-04-21 16:44:23');
 
 -- --------------------------------------------------------
 
@@ -168,7 +163,9 @@ INSERT INTO `product_size` (`id`, `product_id`, `size`) VALUES
 (66, 8, 41),
 (67, 8, 43),
 (68, 9, 1),
-(77, 2, 10);
+(79, 13, 8),
+(80, 13, 8),
+(81, 13, 7);
 
 -- --------------------------------------------------------
 
@@ -197,8 +194,6 @@ CREATE TABLE `purchase_history` (
 --
 
 INSERT INTO `purchase_history` (`id`, `user_id`, `product_id`, `quantity`, `payment_method`, `order_status`, `delivery_detail`, `place_date`, `paid_date`, `shipped_date`, `delivered_date`, `completed_date`, `updated_at`) VALUES
-(13, 1, 1, 5, 'Touch n Go', 'to_pay', '', '2024-08-16 10:00:00', '2024-08-16 10:00:00', '2024-08-16 10:00:00', '2024-08-16 10:00:00', '2024-08-16 10:00:00', '2025-04-19 23:11:47'),
-(14, 1, 2, 2, 'Touch n Go', 'to_receive', '', '2024-09-10 12:30:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
 (15, 1, 3, 4, 'Touch n Go', 'to_ship', '', '2024-10-05 14:45:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
 (16, 1, 4, 1, 'Touch n Go', 'to_review', '', '2024-11-20 16:10:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
 (17, 1, 5, 4, 'Touch n Go', 'to_pay', '', '2024-12-15 18:25:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
@@ -206,7 +201,6 @@ INSERT INTO `purchase_history` (`id`, `user_id`, `product_id`, `quantity`, `paym
 (19, 1, 7, 1, 'Touch n Go', 'to_ship', '', '2025-02-12 08:55:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
 (20, 1, 8, 1, 'Touch n Go', 'to_review', '', '2025-03-05 11:15:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
 (21, 1, 9, 2, 'Touch n Go', 'to_pay', 'WOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWO', '2025-03-25 13:30:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(22, 1, 10, 5, 'Touch n Go', 'to_receive', 'Your package was received on September 16, 2018\n', '2025-04-01 15:45:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
 (28, 1, 8, 2, 'Online Banking', 'to_ship', 'Your package has been delivered![Kuala Lumpur]', '2025-04-19 12:53:00', '2025-04-20 22:52:00', '2025-04-21 22:52:00', '2025-04-24 01:55:00', '2025-04-24 07:53:00', '2025-04-20 12:35:15');
 
 -- --------------------------------------------------------
@@ -236,24 +230,26 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `gender` varchar(100) DEFAULT NULL,
-  `avatar_url` varchar(100) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
+  `role` varchar(20) NOT NULL DEFAULT 'user',
   `address_line` varchar(255) NOT NULL,
   `city` varchar(100) NOT NULL,
-  `postcode` varchar(20) NOT NULL
+  `postcode` varchar(20) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `gender`, `avatar_url`, `active`, `address_line`, `city`, `postcode`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$T5cAq0nJxO7ylo560DjG9OwuVDX5AQ703A82ExGnUKKQUL72vILSG', 'ef9c38d88296dfe8e6cddc74f83c1a35', '2025-03-31 05:32:33', '2025-04-20 16:57:47', 'Male', '/image/avatar/admin.jpg', 1, '', '', ''),
-(2, '芙宁娜', 'furina@gmail.com', '$2y$10$BOzoIzLfJcssk2i76oMhrOCRDKAMLRKXdfaBqhKb9yi5dxDdPlY46', '60b39ebea2f547f96c528c33f9391049', '2025-04-09 17:05:24', '2025-04-20 16:53:57', 'Female', '/image/avatar/芙宁娜.jpg', 1, '', '', ''),
-(15, 'Pandora', 'jackyloh5775@gmail.com', '$2y$10$7i9p./ydlVcz3NWr0Lc/Re0.66g4YEQvpuhWMXO4tlqDPkLeLTGRS', '4b5348117224bc92bffbc68d171cbcb3', '2025-04-19 15:05:20', '2025-04-20 19:45:31', 'other', '/image/avatar/Pandora.jpg', 1, '6, lorong ria 2, Taman Bunga Raya', 'Setapak', '53000');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `gender`, `avatar`, `active`, `role`, `address_line`, `city`, `postcode`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', '$2y$10$T5cAq0nJxO7ylo560DjG9OwuVDX5AQ703A82ExGnUKKQUL72vILSG', '61d0699d689e16a5418765d76461a217', 'Male', '/image/avatar/admin.jpg', 1, 'admin', '', '', '', '2025-03-31 05:32:33', '2025-04-22 09:56:16'),
+(2, '芙宁娜', 'furina@gmail.com', '$2y$10$BOzoIzLfJcssk2i76oMhrOCRDKAMLRKXdfaBqhKb9yi5dxDdPlY46', '03cfe2f138c99dd0d9d0fa08a1c5ed26', 'Female', '/image/avatar/芙宁娜.jpg', 1, 'user', '', '', '', '2025-04-09 17:05:24', '2025-04-22 00:43:50'),
+(15, 'Pandora', 'pandora.va7@gmail.com', '$2y$10$7i9p./ydlVcz3NWr0Lc/Re0.66g4YEQvpuhWMXO4tlqDPkLeLTGRS', '374544bac1bfcc3b73f8a1427fafad52', 'other', '/image/avatar/Pandora.jpg', 1, 'user', '6, lorong ria 2, Taman Bunga Raya', 'Setapak', '53000', '2025-04-19 15:05:20', '2025-04-21 21:32:11'),
+(16, 'Jacky', 'jackyloh5775@gmail.com', '$2y$10$p8DjWMaJwFlbTfjXgl1A2elylkSJ15IgfpYB8aactxoU/jROAP28u', 'b107b375dd62c3ca3bb04ba6a5c33505', NULL, 'image/avatar/Jacky.jpg', 1, 'user', '', '', '', '2025-04-21 15:33:14', '2025-04-22 00:30:00');
 
 --
 -- Indexes for dumped tables
@@ -330,25 +326,25 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_color`
 --
 ALTER TABLE `product_color`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `product_review`
 --
 ALTER TABLE `product_review`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `product_size`
 --
 ALTER TABLE `product_size`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `purchase_history`
@@ -366,7 +362,7 @@ ALTER TABLE `shopping_cart`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

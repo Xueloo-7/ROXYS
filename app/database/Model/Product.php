@@ -48,11 +48,130 @@ class Product {
         return $stm->execute($data);
     }
 
+    // 单独更新主表
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE products SET name = :name, price = :price, stock = :stock WHERE id = :id";
-        $data[':id'] = $id;
-        $stm = $this->pdo->prepare($sql);
-        return $stm->execute($data);
+        $sql = "UPDATE products SET 
+            name = :name,
+            price = :price,
+            discount = :discount,
+            stock = :stock,
+            description = :description,
+            details = :details,
+            image_url = :image_url,
+            category = :category
+            WHERE id = :id";
+    
+        // 准备语句
+        $stmt = $this->pdo->prepare($sql);
+    
+        // 添加 id 到数据中（注意：key 是 'id'，不是 ':id'）
+        $data['id'] = $id;
+    
+        return $stmt->execute($data);
+    }
+
+    // 单独更新color表
+    public function setSizes(int $productId, array $sizes): bool {
+        $sqlDelete = "DELETE FROM product_size WHERE product_id = :id";
+        $this->pdo->prepare($sqlDelete)->execute([':id' => $productId]);
+    
+        $sqlInsert = "INSERT INTO product_size (product_id, size) VALUES (:product_id, :size)";
+        $stmt = $this->pdo->prepare($sqlInsert);
+    
+        foreach ($sizes as $size) {
+            if ($size !== '') {
+                return $stmt->execute([
+                    ':product_id' => $productId,
+                    ':size' => $size
+                ]);
+            }
+        }
+
+        return false;
+    }
+
+    // 单独更新size表
+    public function setColors(int $productId, array $colors): bool {
+        $sqlDelete = "DELETE FROM product_color WHERE product_id = :id";
+        $this->pdo->prepare($sqlDelete)->execute([':id' => $productId]);
+    
+        $sqlInsert = "INSERT INTO product_color (product_id, color_code) VALUES (:product_id, :color_code)";
+        $stmt = $this->pdo->prepare($sqlInsert);
+    
+        foreach ($colors as $color) {
+            if ($color !== '') {
+                return $stmt->execute([
+                    ':product_id' => $productId,
+                    ':color_code' => $color
+                ]);
+            }
+        }
+
+        return false;
+    }
+
+    // 更新主表，size和color表
+    public function updateFullProduct(int $id, array $data, array $sizes, array $colors): bool
+    {
+        // 开启事务避免部分出错和部分更新（意思是只有全部表都不出错才更新）
+        $this->pdo->beginTransaction();
+        try {
+            $this->update($id, $data);
+            $this->setSizes($id, $sizes);
+            $this->setColors($id, $colors);
+            $this->pdo->commit();
+            return true;
+        } catch (Exception $e) {
+            error_log(print_r($e));
+            $this->pdo->rollBack();
+            return false;
+        }
+    }
+
+    public function createFullProduct(array $data, array $sizes, array $colors): bool
+    {
+        $this->pdo->beginTransaction();
+        try {
+            // 创建主产品
+            $sql = "INSERT INTO products (name, price, discount, stock, description, details, image_url, category)
+                    VALUES (:name, :price, :discount, :stock, :description, :details, :image_url, :category)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($data);
+
+            // 获取新创建的 product_id
+            $productId = (int)$this->pdo->lastInsertId();
+
+            // 插入尺码
+            $sqlSize = "INSERT INTO product_size (product_id, size) VALUES (:product_id, :size)";
+            $stmtSize = $this->pdo->prepare($sqlSize);
+            foreach ($sizes as $size) {
+                if ($size !== '') {
+                    $stmtSize->execute([
+                        ':product_id' => $productId,
+                        ':size' => $size
+                    ]);
+                }
+            }
+
+            // 插入颜色
+            $sqlColor = "INSERT INTO product_color (product_id, color_code) VALUES (:product_id, :color_code)";
+            $stmtColor = $this->pdo->prepare($sqlColor);
+            foreach ($colors as $color) {
+                if ($color !== '') {
+                    $stmtColor->execute([
+                        ':product_id' => $productId,
+                        ':color_code' => $color
+                    ]);
+                }
+            }
+
+            $this->pdo->commit();
+            return true;
+        } catch (Exception $e) {
+            error_log("创建产品失败：" . $e->getMessage());
+            $this->pdo->rollBack();
+            return false;
+        }
     }
 
     public function delete(int $id): bool {
@@ -63,14 +182,22 @@ class Product {
 
     private function buildFilterWhere(array $filters, array &$params): string {
         $where = [];
+    
         if (isset($filters['sold_min'])) {
             $where[] = "sold >= :sold_min";
             $params[':sold_min'] = $filters['sold_min'];
         }
+    
         if (isset($filters['category'])) {
             $where[] = "category = :category";
             $params[':category'] = $filters['category'];
         }
+    
+        if (isset($filters['keyword']) && $filters['keyword'] !== 'all') {
+            $where[] = "(name LIKE :keyword OR description LIKE :keyword)";
+            $params[':keyword'] = '%' . $filters['keyword'] . '%';
+        }
+    
         return implode(' AND ', $where);
     }
 

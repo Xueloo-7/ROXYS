@@ -21,11 +21,16 @@ $routes = [
     'logout' => 'controller/LoginController.php',
     'register' => 'controller/LoginController.php',
     'account' => 'controller/AccountController.php',
+    'product/{id}' => 'controller/ProductController.php',
+    'member_listing/{page}/{keyword}'=> 'controller/ListingController.php',
+    'order_listing/{page}/{keyword}'=> 'controller/ListingController.php',
+    'product_listing/{page}'=> 'controller/ListingController.php',
+    'cart' => 'controller/CartController.php',
 
     // 更多写法 example
-    'product/id/{id}' => 'controllers/product.php',
-    'product/category/{category}' => 'controllers/product.php',
-    'product/id/{id}/category/{category}' => 'controllers/product.php',
+    // 'product/id/{id}' => 'controllers/product.php',
+    // 'product/category/{category}' => 'controllers/product.php',
+    // 'product/id/{id}/category/{category}' => 'controllers/product.php',
 ];
 
 // === 核心路由器 ===

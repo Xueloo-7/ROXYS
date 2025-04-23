@@ -25,10 +25,10 @@ switch($path){
 
 function loginProcess(){
     // // 如果已经登录了就返回主页或者重定向
-    // if ($_COOKIE['loggedin'] ?? false) {
-    //     empty($_GET['redirect']) ? header("Location: " . rtrim(BASE_URL, '/')) : header("Location: " .urldecode($_GET['redirect']));
-    //     exit;
-    // }
+    if ($_COOKIE['loggedin'] ?? false) {
+        empty($_GET['redirect']) ? header("Location: " . rtrim(BASE_URL, '/')) : header("Location: " .urldecode($_GET['redirect']));
+        exit;
+    }
 
     // 开始登录流程
     if (is_post()) {

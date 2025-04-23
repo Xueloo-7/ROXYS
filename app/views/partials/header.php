@@ -28,7 +28,7 @@
 
         <div class="right-nav">
             <!-- 购物车 -->
-            <div class="nav-item" data-get="cart">
+            <div class="nav-item" data-get="<?=BASE_URL?>cart">
                 <div class="icon-container">
                     <i class="fas fa-shopping-cart"></i>
                 </div>
@@ -36,7 +36,7 @@
             </div>
 
             <!-- 用户账户 --> 
-            <div class="nav-item" data-get="<?= isLoggedIn() ?  'account' :  'login' ?>">
+            <div class="nav-item" data-get="<?= isLoggedIn() ?  BASE_URL.'account' :  BASE_URL.'login' ?>">
                 <div class="icon-container"><?= getUserAvatarHtml();?></div>
                 <span><?= isLoggedIn() ? "Account" : "Login" ?></span>
             </div>

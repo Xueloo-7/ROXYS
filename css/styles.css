@@ -29,7 +29,10 @@ a:hover {
 /* 文本对齐 */
 .text-center { text-align: center; }
 .text-left { text-align: left; }
-.text-right { text-align: right; }
+.center { 
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 /* 字体加粗 */
 .font-bold { font-weight: bold; }
@@ -39,6 +42,7 @@ a:hover {
 .pointer { cursor: pointer; }
 
 .zoom { zoom: 55%; }
+.relative { position: relative; }
 
 /* 
 ============================================================================
@@ -52,6 +56,9 @@ Pager Navigation
     justify-content: center;
     margin: 20px 0;
     flex-wrap: wrap;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .pager a {
@@ -72,6 +79,12 @@ Pager Navigation
     background-color: #333;
     color: white;
     pointer-events: none;
+}
+
+/* 列表的search-box */
+.search-box {
+    position: fixed;
+    left: 0;
 }
 
 /* 

@@ -2,7 +2,7 @@
     <h2>🛍️ Daily Discover 🔎</h2>
     <div class="sales-items">
         <?php foreach ($products as $product): ?>
-            <a class="sales-item" href="product_info/<?= $product['id'] ?>">
+            <a class="sales-item" href="product/<?= $product['id'] ?>">
                 <div class="image-container">
                     <img src="<?= $product['image_url'] ?>" alt="<?= $product['name'] ?>">
                     <p class="jump-text">Jump To Item</p>
@@ -55,7 +55,7 @@ $(document).ready(function () {
 
             products.forEach(function (product) {
                 let html = `
-                <a class="sales-item" href="product?id=${product.id}">
+                <a class="sales-item" href="product/${product.id}">
                     <div class="image-container">
                         <img src="${BASE_URL + product.image_url}" alt="${product.name}">
                         <p class="jump-text">Jump To Item</p>

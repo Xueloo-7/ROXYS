@@ -60,6 +60,21 @@ function flash_msg($message, $type = 'success') {
     ];
 }
 
+function encode($value){
+    echo htmlspecialchars($value);
+}
+
+function getRouteSegments(): array {
+    $rawPath = getCurrentRoutePath(); // e.g., "product_listing/2"
+    return explode('/', trim($rawPath, '/'));
+}
+
+function getRouteSegment(int $index, $default = null): ?string {
+    $segments = getRouteSegments();
+    return $segments[$index] ?? $default;
+}
+
+
 /**
  * 获取当前请求的路由路径（去除 BASE_URI 和前后斜杠）
  * 例如 /ROXYS/login?id=5 => login

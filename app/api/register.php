@@ -1,4 +1,5 @@
 <?php
+
 // 定义这是api文件，让base.php里的head.php不要输出html
 define('IS_API', true);
 
