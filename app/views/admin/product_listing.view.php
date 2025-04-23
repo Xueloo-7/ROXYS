@@ -1,14 +1,17 @@
 
 <div class="listing-container relative">
-    <form action="<?= BASE_URL ?>product_listing/1" style="margin: 30px 0px;" class="search-box">
-        <input type="text" name="keyword" placeholder="搜索产品" value="">
-        <button type="submit">搜索</button>
+    <!-- Back button -->
+    <a href="<?= BASE_URL ?>" class="back-button zoom"><i class="fas fa-arrow-left"></i> Back to Home Page</a>
+
+    <form action="<?= BASE_URL ?>product_listing/1" style="margin: 50px 0px;" class="search-box">
+        <input type="text" name="keyword" placeholder="Search Product">
+        <button type="submit">Search</button>
     </form>
 
     <table style="margin-top: 100px;" border="1" cellspacing="0" cellpadding="8">
         <thead>
             <tr style="background-color: antiquewhite;">
-                <th>操作</th>
+                <th>Operation</th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Original Price</th>
@@ -29,8 +32,8 @@
             <tr data-id="<?= $product['id'] ?>">
                 <td>
                     <div style="display: flex; gap: 5px;">
-                        <button class="save-btn">保存</button>
-                        <button class="delete-btn" style="background-color: #f66; color: white;">删除</button>
+                        <button class="save-btn">Save</button>
+                        <button class="delete-btn" style="background-color: #f66; color: white;">Delete</button>
                     </div>
                 </td>
                 <td><?= $product['id'] ?></td>
@@ -50,11 +53,11 @@
         </tbody>
     </table>
 
-    <button id="add-product-btn" class="center">Add a product</button>
+    <button id="add-product-btn" class="center" style="margin:30px 0px">Add a product</button>
 
-   <!-- Add Product Modal -->
-    <div id="add-product-modal" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background: white; padding: 20px; border: 2px solid #ccc; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 1000;">
-        <h3>添加新产品</h3>
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="center" style="display: none; top: 3%; background: white; padding: 20px; border: 2px solid #ccc; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 1000;">
+        <h3>Add a new product</h3>
         <form id="add-product-form">
             <label>Name: <input type="text" name="name" required></label><br><br>
             <label>Price: <input type="number" name="price" step="0.01" required></label><br><br>
@@ -64,15 +67,15 @@
             <label>Details: <textarea name="details"></textarea></label><br><br>
             <label>Image URL: <input type="text" name="image_url"></label><br><br>
             <label>Category: <input type="text" name="category"></label><br><br>
-            <label>Sizes (逗号分隔): <input type="text" name="sizes"></label><br><br>
-            <label>Colors (逗号分隔): <input type="text" name="colors"></label><br><br>
+            <label>Sizes (seperate with , ): <input type="text" name="sizes"></label><br><br>
+            <label>Colors (seperate with , ): <input type="text" name="colors"></label><br><br>
 
-            <button type="submit">确定</button>
-            <button type="button" id="cancel-add-product">取消</button>
+            <button type="submit">confirm</button>
+            <button type="button" id="cancel-add-product">cancel</button>
         </form>
     </div>
 
-    <?= $pager->render('keyword='.$keyword,'','product_listing') ?>
+    <?= $pager->render('keyword='.$keyword,'style="margin: 80px 0px"','product_listing') ?>
 </div>
 
 <script>
@@ -102,28 +105,29 @@ $('#add-product-form').submit(function(e) {
     };
 
     $.post('<?= API_URL ?>add_product.php', data, function(res) {
-        alert('添加成功');
+        alert('Add Success');
         $('#add-product-modal').fadeOut();
         location.reload(); // 可选，刷新页面显示新产品
     }).fail(function() {
-        alert('添加失败');
+        alert('Add Failed');
     });
 });
 
 
 $('.delete-btn').click(function(e) {
     e.preventDefault();
+    if (!confirm("Are you sure you want to delete this product?")) return;
     const row = $(this).closest('tr');
     const id = row.data('id');
     const data = {
         id: id
     };
     $.post('<?= API_URL ?>delete_product.php', data, function(res) {
-        alert('删除成功');
+        alert('Delete Success');
         location.reload();
 
     }).fail(function() {
-        alert('删除失败');
+        alert('Delete Failed');
     });
 });
 
@@ -145,9 +149,9 @@ $('.save-btn').click(function(e) {
         colors: row.find('[name="colors"]').val(),
     };
     $.post('<?= API_URL ?>update_product.php', data, function(res) {
-        alert('保存成功');
+        alert('Save Success');
     }).fail(function() {
-        alert('保存失败');
+        alert('Save Failed');
     });
 });
 </script>

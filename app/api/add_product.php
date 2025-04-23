@@ -1,12 +1,7 @@
 <?php
 
-// 定义这是api文件，让base.php里的head.php不要输出html
-define('IS_API', true);
-
-require_once __DIR__.'/../../base.php';
+require_once __DIR__.'/_baseAPI.php';
 require_once __DIR__.'/../database/Model/Product.php';
-require_once __DIR__.'/../config/DatabaseConfig.php';
-require_once __DIR__.'/../database/Database.php';
 
 header('Content-Type: application/json');
 
@@ -26,7 +21,6 @@ if(is_post()){
     $pdo = (new Database(DatabaseConfig::getDatabaseConfig()))->getConnection();
     $productModel = new Product($pdo);
 
-    // 更新产品
     $data = [
         'name' => $name,
         'price' => $price,

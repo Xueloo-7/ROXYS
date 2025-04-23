@@ -22,8 +22,8 @@ $routes = [
     'register' => 'controller/LoginController.php',
     'account' => 'controller/AccountController.php',
     'product/{id}' => 'controller/ProductController.php',
-    'member_listing/{page}/{keyword}'=> 'controller/ListingController.php',
-    'order_listing/{page}/{keyword}'=> 'controller/ListingController.php',
+    'member_listing/{page}'=> 'controller/ListingController.php',
+    'order_listing/{page}'=> 'controller/ListingController.php',
     'product_listing/{page}'=> 'controller/ListingController.php',
     'cart' => 'controller/CartController.php',
 
@@ -33,7 +33,7 @@ $routes = [
     // 'product/id/{id}/category/{category}' => 'controllers/product.php',
 ];
 
-// === 核心路由器 ===
+// === 核心路由器（有点复杂所以写了注释） ===
 function matchRoute($path, $routes, &$params = []) {
     // 遍历所有定义的路由
     foreach ($routes as $route => $file) {

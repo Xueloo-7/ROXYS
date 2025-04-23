@@ -1,14 +1,11 @@
 <?php
+require_once __DIR__.'/BaseModel.php';
 
 /**
  * 包含功能：增删改，和用id获取
  */
-class Review {
-    private PDO $pdo;
-
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
-    }
+class Review extends BaseModel{
+    protected string $table = 'product_review';
 
     // 查找评论 by ID
     public function findById(int $id): ?array {

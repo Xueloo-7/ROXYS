@@ -1,11 +1,8 @@
 <?php
+require_once __DIR__.'/BaseModel.php';
 
-class Cart {
-    private $pdo;
-
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
-    }
+class Cart extends BaseModel{
+    protected string $table = 'shopping_cart';
 
     // 添加商品进购物车（有重复就加数量）
     public function addItem(array $data) {

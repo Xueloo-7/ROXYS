@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2025 at 04:22 AM
+-- Generation Time: Apr 23, 2025 at 03:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Database: `roxy_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `payment_method` varchar(20) NOT NULL,
+  `order_status` varchar(10) NOT NULL,
+  `delivery_detail` varchar(500) NOT NULL,
+  `place_date` datetime NOT NULL,
+  `paid_date` datetime DEFAULT NULL,
+  `shipped_date` datetime DEFAULT NULL,
+  `delivered_date` datetime DEFAULT NULL,
+  `completed_date` datetime DEFAULT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `product_id`, `quantity`, `payment_method`, `order_status`, `delivery_detail`, `place_date`, `paid_date`, `shipped_date`, `delivered_date`, `completed_date`, `updated_at`) VALUES
+(15, 1, 3, 4, 'Touch n Go', 'to_ship', '', '2024-10-05 14:45:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(16, 1, 4, 1, 'Touch n Go', 'to_review', '', '2024-11-20 16:10:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(17, 1, 5, 4, 'Touch n Go', 'to_pay', '', '2024-12-15 18:25:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(18, 1, 6, 2, 'Touch n Go', 'to_receive', '', '2025-01-08 20:40:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(19, 1, 7, 1, 'Touch n Go', 'to_ship', '', '2025-02-12 08:55:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(20, 1, 8, 1, 'Touch n Go', 'to_review', '', '2025-03-05 11:15:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(21, 1, 9, 2, 'Touch n Go', 'to_pay', 'WOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWO', '2025-03-25 13:30:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(28, 1, 8, 2, 'Online Banking', 'to_ship', 'Your package has been delivered![Kuala Lumpur]', '2025-04-19 12:53:00', '2025-04-20 22:52:00', '2025-04-21 22:52:00', '2025-04-24 01:55:00', '2025-04-24 07:53:00', '2025-04-20 12:35:15');
 
 -- --------------------------------------------------------
 
@@ -61,14 +97,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `original_price`, `description`, `stock`, `discount`, `sold`, `details`, `image_url`, `category`) VALUES
-(3, 'Gucci Belted Pleated Dress', 799.99, 999.99, 'Elegant Gucci dress with pleated design.', 50, 20, 5650, 'Function: Reinforced with abrasion-resistant fibers to withstand rugged conditions.\r\nClosing method: Lace-up closure adds security and a sporty look.\r\nStyle: Minimalist aesthetic for a timeless fashion vibe.\r\nSeason: Suitable for cool and mild seasons.\r\nFlat cap style: Circular flat brim gives a bold statement.\r\nOccasion: Designed for art fairs, weekend walks, or streetwear looks.\",\"https://picsum.photos/seed/3/300/300,https://picsum.photos/seed/4/300/300', 'image/product/Dresses/Gucci Belted pleated cotton dresses.webp', 'dress'),
+(3, 'Gucci Belted Pleated Dress', 999.99, 999.99, 'Elegant Gucci dress with pleated design.', 50, 20, 5650, 'Function: Reinforced with abrasion-resistant fibers to withstand rugged conditions.\nClosing method: Lace-up closure adds security and a sporty look.\nStyle: Minimalist aesthetic for a timeless fashion vibe.\nSeason: Suitable for cool and mild seasons.\nFlat cap style: Circular flat brim gives a bold statement.\nOccasion: Designed for art fairs, weekend walks, or streetwear looks.\",\"https://picsum.photos/seed/3/300/300,https://picsum.photos/seed/4/300/300', 'image/product/Dresses/Gucci Belted pleated cotton dresses.webp', 'dress'),
 (4, 'Men\'s Fashionable Long Pants', 59.99, 79.99, 'Stylish long pants for men.', 120, 25, 87, 'Function: Crafted for flexibility and resistance to wear, ensuring comfort and longevity.\r\nClosing method: Classic lace-up system for snug fit.\r\nStyle: Urban-inspired, tailored for trend-conscious individuals.\r\nSeason: Designed for transitional weather.\r\nFlat cap style: Smooth round shape complements most face shapes.\r\nOccasion: Ideal for fashion shoots, events, or casual hangouts.\",\"https://picsum.photos/seed/5/300/300,https://picsum.photos/seed/6/300/300', 'image/product/LongShortPants/Long Pants/Men\'s Fashionable pants.webp', 'pants'),
 (5, 'Rollerblade Grey Men\'s Shorts', 34.99, 49.99, 'Casual grey shorts with pockets.', 90, 30, 22, 'Function: Durable design suitable for outdoor activity and all-day wear.\r\nClosing method: Adjustable lace system for a personalized fit.\r\nStyle: Modern cut with a vintage twist.\r\nSeason: Versatile for spring and fall.\r\nFlat cap style: Round flat cap with reinforced seams.\r\nOccasion: Wear it to markets, campus, or creative events.\",\"https://picsum.photos/seed/7/3000/300,https://picsum.photos/seed/8/200/320', 'image/product/LongShortPants/Short pants/Rollerblade Grey Men\'s Shorts with Pocket Grey.webp', 'pants'),
 (6, 'Adidas Boxer Underwear for Men', 89.99, 129.99, 'High-quality shoes with detailed finishing.', 70, 20, 18, 'Function: Combines comfort with long-term endurance in daily use.\r\nClosing method: Secure lace-up entry.\r\nStyle: Contemporary cap with subtle urban cues.\r\nSeason: Meant for sunny or breezy weather.\r\nFlat cap style: Clean round silhouette.\r\nOccasion: Pair it with smart-casual outfits or outdoor wear.\",\"https://picsum.photos/seed/9/300/300,https://picsum.photos/seed/10/300/300', 'image\\product\\Underclothes\\Men\'s\\Adidas Boxer Underwear for Men.jpeg', 'underclothes'),
 (7, 'Christian Louboutin High Heels', 999.99, 1299.99, 'Luxury high heels by Christian Louboutin.', 40, 23, 10, 'Function: Engineered to resist friction and surface damage.\r\nClosing method: Easy-to-adjust laces ensure a perfect fit.\r\nStyle: Refined streetwear influence.\r\nSeason: Best for spring-to-summer transition.\r\nFlat cap style: Balanced circle shape for comfort and style.\r\nOccasion: Street fashion, music festivals, or quick errands.\",\"https://picsum.photos/seed/11/300/300,https://picsum.photos/seed/12/300/300', 'image/product/Shoes/HighHeels/Christian Louboutin Sourse high heels.webp', 'shoe'),
 (8, 'Dior Running Shoes', 299.99, 399.99, 'Premium running shoes by Dior.', 80, 25, 523, 'Function: Wear resistant\r\nClosing method: Lace up\r\nStyle: Sports\r\nSeason: Spring and Autumn\r\nShoe toe style: Round toe\r\nOccasion: Sports and Leisure', 'image/product/Shoes/RunningShoes/dior shoes.jpeg', 'shoe'),
-(9, 'Adidas Women\'s Ankle Socks', 19.99, 29.99, 'Comfortable ankle socks from Adidas.', 200, 33, 50, 'Function: Made with materials that withstand intensive daily use.\r\nClosing method: Customizable lacing structure.\r\nStyle: Urban cool with minimalist touches.\r\nSeason: Great for variable temperatures.\r\nFlat cap style: Neutral round frame.\r\nOccasion: Use it at cafes, trips, or city walks.\",\"https://picsum.photos/seed/13/300/300,https://picsum.photos/seed/14/300/300', 'image/product/Socks/Women\'s/Adidas Women\'s Anikle Socks.jpeg', 'socks'),
-(13, 'test', 49.99, 0, 'test', 100, 1, 0, 'test', 'test', 'cap');
+(9, 'Adidas Women\'s Ankle Socks', 19.99, 29.99, 'Comfortable ankle socks from Adidas.', 200, 33, 50, 'Function: Made with materials that withstand intensive daily use.\r\nClosing method: Customizable lacing structure.\r\nStyle: Urban cool with minimalist touches.\r\nSeason: Great for variable temperatures.\r\nFlat cap style: Neutral round frame.\r\nOccasion: Use it at cafes, trips, or city walks.\",\"https://picsum.photos/seed/13/300/300,https://picsum.photos/seed/14/300/300', 'image/product/Socks/Women\'s/Adidas Women\'s Anikle Socks.jpeg', 'socks');
 
 -- --------------------------------------------------------
 
@@ -87,7 +122,6 @@ CREATE TABLE `product_color` (
 --
 
 INSERT INTO `product_color` (`id`, `product_id`, `color_code`) VALUES
-(3, 3, '#FFD700'),
 (4, 4, '#000000'),
 (5, 5, '#808080'),
 (6, 6, '#B22222'),
@@ -95,8 +129,7 @@ INSERT INTO `product_color` (`id`, `product_id`, `color_code`) VALUES
 (8, 8, '#1E90FF'),
 (9, 9, '#000000'),
 (11, 5, '#8B4513'),
-(45, 13, '#000000'),
-(46, 13, '#FFFFFF');
+(47, 3, '#FFD700');
 
 -- --------------------------------------------------------
 
@@ -146,9 +179,6 @@ CREATE TABLE `product_size` (
 --
 
 INSERT INTO `product_size` (`id`, `product_id`, `size`) VALUES
-(52, 3, 6),
-(53, 3, 8),
-(54, 3, 10),
 (55, 4, 30),
 (56, 4, 32),
 (57, 4, 34),
@@ -163,45 +193,7 @@ INSERT INTO `product_size` (`id`, `product_id`, `size`) VALUES
 (66, 8, 41),
 (67, 8, 43),
 (68, 9, 1),
-(79, 13, 8),
-(80, 13, 8),
-(81, 13, 7);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `purchase_history`
---
-
-CREATE TABLE `purchase_history` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `payment_method` varchar(20) NOT NULL,
-  `order_status` varchar(10) NOT NULL,
-  `delivery_detail` varchar(500) NOT NULL,
-  `place_date` datetime NOT NULL,
-  `paid_date` datetime DEFAULT NULL,
-  `shipped_date` datetime DEFAULT NULL,
-  `delivered_date` datetime DEFAULT NULL,
-  `completed_date` datetime DEFAULT NULL,
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `purchase_history`
---
-
-INSERT INTO `purchase_history` (`id`, `user_id`, `product_id`, `quantity`, `payment_method`, `order_status`, `delivery_detail`, `place_date`, `paid_date`, `shipped_date`, `delivered_date`, `completed_date`, `updated_at`) VALUES
-(15, 1, 3, 4, 'Touch n Go', 'to_ship', '', '2024-10-05 14:45:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(16, 1, 4, 1, 'Touch n Go', 'to_review', '', '2024-11-20 16:10:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(17, 1, 5, 4, 'Touch n Go', 'to_pay', '', '2024-12-15 18:25:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(18, 1, 6, 2, 'Touch n Go', 'to_receive', '', '2025-01-08 20:40:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(19, 1, 7, 1, 'Touch n Go', 'to_ship', '', '2025-02-12 08:55:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(20, 1, 8, 1, 'Touch n Go', 'to_review', '', '2025-03-05 11:15:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(21, 1, 9, 2, 'Touch n Go', 'to_pay', 'WOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWO', '2025-03-25 13:30:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
-(28, 1, 8, 2, 'Online Banking', 'to_ship', 'Your package has been delivered![Kuala Lumpur]', '2025-04-19 12:53:00', '2025-04-20 22:52:00', '2025-04-21 22:52:00', '2025-04-24 01:55:00', '2025-04-24 07:53:00', '2025-04-20 12:35:15');
+(82, 3, 6);
 
 -- --------------------------------------------------------
 
@@ -217,6 +209,17 @@ CREATE TABLE `shopping_cart` (
   `color_code` varchar(100) DEFAULT NULL,
   `size` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `shopping_cart`
+--
+
+INSERT INTO `shopping_cart` (`id`, `user_id`, `product_id`, `quantity`, `color_code`, `size`) VALUES
+(44, 1, 3, 1, '#FF0000', 'M'),
+(45, 1, 5, 2, '#00FF00', 'L'),
+(46, 1, 7, 1, '#0000FF', 'S'),
+(47, 1, 8, 3, '#FFFF00', 'XL'),
+(48, 1, 9, 1, '#000000', 'M');
 
 -- --------------------------------------------------------
 
@@ -256,6 +259,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `gende
 --
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -290,14 +301,6 @@ ALTER TABLE `product_size`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `purchase_history`
---
-ALTER TABLE `purchase_history`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- Indexes for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
@@ -317,6 +320,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -332,7 +341,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_color`
 --
 ALTER TABLE `product_color`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `product_review`
@@ -344,19 +353,13 @@ ALTER TABLE `product_review`
 -- AUTO_INCREMENT for table `product_size`
 --
 ALTER TABLE `product_size`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
-
---
--- AUTO_INCREMENT for table `purchase_history`
---
-ALTER TABLE `purchase_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -367,6 +370,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `product_color`
@@ -385,13 +395,6 @@ ALTER TABLE `product_review`
 --
 ALTER TABLE `product_size`
   ADD CONSTRAINT `product_size_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `purchase_history`
---
-ALTER TABLE `purchase_history`
-  ADD CONSTRAINT `purchase_history_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `purchase_history_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `shopping_cart`

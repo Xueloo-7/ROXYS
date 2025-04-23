@@ -30,6 +30,7 @@ a:hover {
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .center { 
+    position: fixed; 
     left: 50%;
     transform: translateX(-50%);
 }
@@ -43,6 +44,18 @@ a:hover {
 
 .zoom { zoom: 55%; }
 .relative { position: relative; }
+.fixed { position: fixed; }
+
+/* 左上角返回按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 32px;
+    color: #333;
+    text-decoration: none;
+    z-index: 10000;
+}
 
 /* 
 ============================================================================

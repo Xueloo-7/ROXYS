@@ -154,7 +154,7 @@ $(document).ready(function() {
 
         // 这里可以通过 Ajax 提交评论到服务器端
         $.ajax({
-            url: '<?= API_URL ?>submit_review.php',
+            url: '<?= API_URL ?>add_review.php',
             method: 'POST',
             data: {
                 review_text: reviewText,

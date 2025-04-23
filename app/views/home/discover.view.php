@@ -35,8 +35,7 @@ Lazy Load 懒加载
 
 <script>
     
-const BASE_URL = "<?= BASE_URL ?>";
-
+console.log(BASE_URL);
 // AJAX请求获取下一页的产品数据然后附加到sales-items底部
 $(document).ready(function () {
     $('#load-more').on('click', function (e) {

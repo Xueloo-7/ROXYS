@@ -1,11 +1,18 @@
 <?php
+require_once __DIR__.'/BaseModel.php';
 
-class User
-{
-    private PDO $pdo;
+class User extends BaseModel{
+    protected string $table = 'users';
 
-    public function __construct(PDO $pdo){
-        $this->pdo = $pdo;
+    protected function buildFilterWhere(array $filters, array &$params): string {
+        $where = [];
+    
+        if (isset($filters['keyword']) && $filters['keyword'] !== 'all') {
+            $where[] = "(name LIKE :keyword)";
+            $params[':keyword'] = '%' . $filters['keyword'] . '%';
+        }
+    
+        return implode(' AND ', $where);
     }
 
     public function findByEmail($email)
@@ -35,19 +42,28 @@ class User
 
     public function update($id, $data)
     {
+        // 初始化字段数组和参数数组
         $fields = [];
         $params = [':id' => $id];
-
+    
+        // 遍历数据，将每个字段值添加到 SQL 更新语句中
         foreach ($data as $key => $value) {
-            $fields[] = "$key = :$key";
-            $params[":$key"] = $value;
+            if (!empty($value) || $value === '0') {  // 允许空字符串 '0' 或数字 0 更新
+                $fields[] = "$key = :$key";  // 拼接字段名和值
+                $params[":$key"] = $value;   // 将每个字段值绑定到 params 中
+            }
         }
-
+    
+        // 生成 SQL 语句
         $sql = "UPDATE users SET " . implode(', ', $fields) . " WHERE id = :id";
+    
+        // 准备 SQL 语句
         $stmt = $this->pdo->prepare($sql);
-
+    
+        // 执行 SQL 语句并返回结果
         return $stmt->execute($params);
     }
+    
 
     public function delete($id)
     {
@@ -68,4 +84,22 @@ class User
         $stmt->execute([':name' => $name]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    // 切换封锁状态
+    public function toggleBlock($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT active FROM users WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            throw new Exception("User not found");
+        }
+
+        $newStatus = $user['active'] ? 0 : 1;
+
+        $stmt = $this->pdo->prepare("UPDATE users SET active = :status WHERE id = :id");
+        return $stmt->execute([':status' => $newStatus, ':id' => $id]);
+    }
+
 }

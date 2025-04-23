@@ -1,24 +1,30 @@
 <?php
 
 require_once __DIR__.'/_baseAPI.php';
-require_once __DIR__.'/../database/Model/Product.php';
+require_once __DIR__.'/../database/Model/User.php';
 
 header('Content-Type: application/json');
 
 if(is_post()){
-
-    $id = (int)$_POST['id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     $pdo = (new Database(DatabaseConfig::getDatabaseConfig()))->getConnection();
-    $productModel = new Product($pdo);
+    $userModel = new User($pdo);
 
-    $success = $productModel->delete($id);
+    $data = [
+        'name' => $name,
+        'email' => $email,
+        'password' => $password
+    ];
+    $success = $userModel->create($data);
 
     if ($success) {
         echo json_encode(['success' => true]);
     } else {
         http_response_code(500);
-        echo json_encode(['success' => false, 'message' => 'Failed to delete product']);
+        echo json_encode(['success' => false, 'message' => 'Failed to create product']);
     }
 } else {
     http_response_code(405);
