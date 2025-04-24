@@ -26,6 +26,10 @@ $routes = [
     'order_listing/{page}'=> 'controller/ListingController.php',
     'product_listing/{page}'=> 'controller/ListingController.php',
     'cart' => 'controller/CartController.php',
+    'payment' => 'controller/PaymentController.php',
+    'payment/{status}' => 'controller/PaymentController.php',
+    'order' => 'controller/OrderController.php',
+    'search/{keyword}' => 'controller/HomeController.php',
 
     // 更多写法 example
     // 'product/id/{id}' => 'controllers/product.php',

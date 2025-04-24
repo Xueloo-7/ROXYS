@@ -1,0 +1,368 @@
+main{
+    /* background-color: aquamarine; */
+}
+
+/* 主要容器 */
+.purchase-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 10%; /* 上下10，左右5 */
+    min-width: 1200px;
+
+    .top-box{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
+        z-index: 10;
+
+        /* 标题 */
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    }
+
+
+
+    /* 订单分类选项 */
+    .order-tabs {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 60px;
+        position: relative;
+        border-bottom: 6px solid black;
+    }
+
+    .order-tabs a:hover{
+        
+        color: #2698b3;
+    }
+
+    .order-tabs a {
+        text-decoration: none;
+        font-size: 36px;
+        color: #333;
+        padding: 5px 10px;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    /* 激活状态 */
+    .order-tabs a.active {
+        color: #2698b3;
+        font-weight: bold;
+    }
+
+    /* 竖线装饰（避免受 bold 影响）*/
+    .order-tabs a:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -15px; /* 调整间距 */
+        top: 50%;
+        width: 4px;
+        height: 20px;
+        background-color: #ccc;
+        transform: translateY(-50%);
+        font-weight: normal; /* 避免受 bold 影响 */
+        pointer-events: none; /* 防止点击 */
+    }
+
+    /* 让竖线不随字体加粗 */
+    .order-tabs a.active::after {
+        font-weight: normal;
+    }
+
+    /* 下划线 */
+    .indicator {
+        position: absolute;
+        bottom: -6px;
+        height: 6px;
+        width: 100px; /* 初始宽度 */
+        background-color: #92e8e2;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* 样式：让 loading 图标居中 */
+    #loading-icon {
+        display: none;
+        text-align: center;
+    }
+}
+
+/* 包裹所有 order-card 的盒子 */
+#order-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+
+    /* 单个 order-card */
+    .order-card:hover{
+        transition: all .2s ease-out;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    .order-card {
+        min-height: 500px;
+        background-color: rgb(231, 231, 231);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        overflow: hidden; /* 关键！防止内容突然撑开时跳动 */
+        transition: all 0.5s ease-out; /* 动画属性 */
+        will-change: height; /* 优化性能 */
+
+
+        /* 左边部分 */
+        .left-part {
+            display: flex;
+            flex-direction: column;
+            min-width: 50%;
+            flex:1;
+
+            .above-part{
+                display: flex;
+                flex-direction: row;
+
+                .img-part {
+                    display: block;
+                    width: 350px;
+                    height: 350px;
+                    
+                    .product-image {
+                        width: 300px; 
+                        height: 300px;
+                        object-fit: cover;
+                        margin-left: 50px;
+                        margin-top: 50px;
+                    }
+                }
+
+                .info-part {
+                    display: flex;
+                    flex-direction: column;
+                    width: calc(100% - 350px);
+                    height: 100%; /* 确保容器高度充满父级 */
+                
+                    .product-name {
+                        margin: 50px;
+                        font-size: 40px;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        text-overflow: ellipsis;
+                        font-weight: bold;
+                        /* 强制顶部对齐 */
+                        margin-bottom: auto; /* 关键代码：将下方空间推给其他元素 */
+                    }
+                
+                    .product-price,
+                    .product-quantity {
+                        font-size: 32px;
+                        margin: 0;
+                        margin-left: 50px;
+                        margin-right: 50px;
+                        /* 强制底部对齐 */
+                    }
+                }
+            }
+
+            .below-part{
+
+                .product-total-price {
+                    margin: 20px 50px 20px 50px;
+                    font-size: 40px;
+                }
+            }
+
+            /* 订单操作按钮 */
+            .order-action-button {
+                
+                display: flex;
+                justify-content: start;
+                align-items: center;
+
+                /* 和图标的距离 */
+                gap: 30px; 
+                margin: 0px 50px 20px 50px;
+                height: 115px;
+                font-size: 36px;
+                font-weight: bold;
+                color:#008CBA;
+
+                form{
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    button {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        font-size: 42px;
+                        font-family: serif;
+                        border-radius: 15px;
+                        height: 80px;
+                        transition: all 0.3s;
+                    }
+                }
+
+                #buy-again:hover {
+                    border: 4px solid white;
+                    background: #008CBA;
+                    color: white;
+            
+                }
+
+                #edit-review:hover {
+                    border: 4px solid white;
+                    background: gray;
+                    color: white;
+            
+                }
+
+                #buy-again{
+                    white-space: nowrap;
+                    border: 4px solid #008CBA;
+                    color: #008CBA;
+                }
+
+                #edit-review{
+                    white-space: nowrap;
+                    border: 4px solid gray;
+                    color: gray;
+                }
+            }
+        }
+
+        /* 右边部分 */
+        .right-part {
+            display: flex;
+            flex-direction: column;
+            min-width: 50%;
+            flex: 1; /* 允许内部自由伸缩 */
+
+            
+
+            /* 右上角说明盒子 */
+            .info-box {
+                display: flex;
+                flex-direction: column;
+                margin: 50px;
+                margin-bottom: 0;
+                border-radius: 15px;
+                border: 4px solid #008CBA;
+                background-color: white;
+                height: min-content;  /* 高度仅适应内容 */
+
+                .status-ui{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    height: 40%;
+                    margin-top: 20px;
+
+                    i {
+                        display: inline-block;
+                        font-size: 40px;
+                        padding: 30px;
+                        width: min-content;   /* 宽度仅适应内容 */
+                        height: min-content;  /* 高度仅适应内容 */
+                    }
+
+                    /* 订单状态 */
+                    p{
+                        font-size: 40px;
+                        font-weight: bold;
+                        color: #008CBA;
+                    }
+                }
+
+                /* 订单说明 */
+                p{
+                    font-size: 36px;
+                    margin: 0;
+                    padding: 0px 30px 20px 30px;
+                    word-wrap: break-word; /* 允许长单词换行 */
+                }
+            }
+
+            /* 订单信息 */
+            .order-info {
+                display: flex;
+                flex-direction: row;
+                margin: 50px;
+                margin-top: 20px;
+                overflow: hidden;
+
+                /* 默认隐藏时，容纳两个p */
+                max-height: calc(2 * (36px + 10px));
+                /* transition: all .5s ease-out; */
+
+                .left{
+                    min-width: 50%;
+                    text-align: left;
+                }
+
+                .right{
+                    min-width: 50%;
+                    text-align: right;
+
+                }
+
+                p{
+                    margin: 0;
+                    margin-bottom: 10px;
+                    font-size: 36px;
+                }
+            }
+            .order-info.hidden{
+                /* 展开时 */
+                max-height: 100%;
+            }
+
+            /* 更多信息按钮 */
+            .more-information-box{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 0px;
+                height: 115px;
+            }
+
+            .more-information {     
+                display: flex;
+                flex-direction: row;   
+                align-items: center;        
+                cursor: pointer;
+                /* 和图标的距离 */
+                gap: 8px; 
+                font-size: 36px;
+                font-family: serif;
+                font-weight: bold;
+                color:#008CBA;
+                border: none;
+                background: transparent;
+                transition: all .2s;
+            }
+            .more-information:hover{
+                color:#237082;
+            }
+            
+            .more-information p,
+            .more-information i {
+                pointer-events: none; /* 确保点击能穿透到父元素 */
+            }
+        }
+    }
+
+    .fill{
+        flex:1;
+    }
+}
+
+.history-not-found{
+    font-size: 32px;
+}

@@ -163,6 +163,7 @@ function link_js($path) {
 // Debug
 // ============================================================================
 
+// debug and die
 function dd($content){
     echo '<pre>';
     var_dump($content);
@@ -171,7 +172,7 @@ function dd($content){
 }
 
 // Generate beautiful debug
-function pre_var_dump($content){
+function vv($content){
     echo '<pre>';
     var_dump($content);
     echo '</pre>';

@@ -15,18 +15,18 @@ class OrderHistory extends BaseModel{
         return implode(' AND ', $where);
     }
 
-    public function getUserNameByOrderId(int $id): string{
-        $stmt = $this->pdo->prepare("SELECT name FROM users WHERE id = :id");
+    public function getUserById(int $id): array {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row['name'] ?? 'none';
+        return $row ?: [];  // 返回用户信息或空数组
     }
     
-    public function getProductNameByOrderId(int $id): string{
-        $stmt = $this->pdo->prepare("SELECT name FROM products WHERE id = :id");
+    public function getProductById(int $id): array {
+        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = :id");
         $stmt->execute([':id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row['name'] ?? 'none';
+        return $row ?: [];  // 返回产品信息或空数组
     }
 
     public function update($id, $data) {
@@ -55,9 +55,42 @@ class OrderHistory extends BaseModel{
         ]);
     }
 
-    public function create(array $data) {
+    // 支付成功，将物品收入该用户的订单历史
+    public function checkout(array $data) {
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO orders 
+                (user_id, product_id, quantity, payment_method, order_status, delivery_detail, place_date, paid_date, shipped_date, delivered_date, completed_date)
+             VALUES 
+                (:user_id, :product_id, :quantity, :payment_method, :order_status, :delivery_detail, :place_date, :paid_date, :shipped_date, :delivered_date, :completed_date)"
+        );
 
-    }    
+        try {
+            $this->pdo->beginTransaction();
+
+            foreach ($data['cart'] as $item) {
+                $stmt->execute([
+                    ':user_id' => $data['user_id'],
+                    ':product_id' => $item['product_id'],
+                    ':quantity' => $item['quantity'],
+                    ':payment_method' => $data['payment_method'],
+                    ':order_status' => $data['order_status'],
+                    ':delivery_detail' => $data['delivery_detail'],
+                    ':place_date' => $data['place_date'],
+                    ':paid_date' => $data['place_date'],
+                    ':shipped_date' => $data['place_date'],
+                    ':delivered_date' => $data['place_date'],
+                    ':completed_date' => $data['place_date'],
+                ]);
+            }
+
+            $this->pdo->commit();
+            return true;
+        } catch (PDOException $e) {
+            $this->pdo->rollBack();
+            error_log("Checkout Error: " . $e->getMessage());
+            return false;
+        }
+    }
 
     // 删除某项
     public function delete($id) {
@@ -68,6 +101,17 @@ class OrderHistory extends BaseModel{
 
     // 获取某个用户的订单历史
     public function getOrdersByUserId($userId) {
-
+        $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY place_date DESC";
+    
+        // 准备和执行查询
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        // 获取结果
+        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        // 返回查询结果
+        return $orders;
     }
 }

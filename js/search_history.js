@@ -14,5 +14,5 @@ $(function () {
 });
 
 window.history_searching = function (query) {
-    window.location.href = `${BASE_URL}search/${encodeURIComponent(query)}`;
+    window.location.href = `${BASE_URL}search/${encodeURIComponent(query)}all`;
 };

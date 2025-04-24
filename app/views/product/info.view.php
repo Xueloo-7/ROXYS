@@ -39,7 +39,9 @@ link_css('product');
                     <label for="color">Color:</label>
                     <div class="color-options">
                         <?php foreach ($product['colors'] as $color): ?>
-                            <span class="color-swatch" style="background-color: <?= $color; ?>;"></span>
+                            <span class="color-swatch" 
+                                style="background-color: <?= $color; ?>;" 
+                                data-color="<?= $color; ?>"></span>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -54,7 +56,7 @@ link_css('product');
 
         <!-- Button 选择 -->
         <div class="product-buttons">
-            <button class="buy-now">Buy Now</button>
+            <button class="view-cart">View Cart</button>
             <button class="add-to-cart">Add to Cart</button>
             <button class="add-to-wishlist">Add to Wishlist</button>
         </div>
@@ -99,19 +101,20 @@ link_css('product');
 
 <script>
 $(document).ready(function() {
-    // 点击购买一个，跳转到payment界面
-    $('.buy-now').click(function() {
-        $.post('<?= API_URL ?>buy_now.php', {
-            product_id: <?= $product['id']; ?>,
-            size: $('#size').val(),
-            color: $('.color-swatch.selected').css('background-color'),
-            quantity: $('#quantity').val()
-        }, function(response) {
-            alert('Order placed successfully!');
-            // 也可以跳转到付款页面 location.href = 'checkout.php';
-        }).fail(function() {
-            alert('Error placing order.');
-        });
+    // 不知道为什么会滚动到底部，所以这里强制滚回去了
+    $('html, body').scrollTop(0);
+
+    // 默认选择第一个颜色
+    $('.color-swatch').first().addClass('selected');
+
+    // 颜色选中样式切换
+    $('.color-swatch').click(function() {
+        $('.color-swatch').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    $('.view-cart').click(function() {
+        window.location.href = '<?= BASE_URL ?>cart';
     });
 
     // 将产品添加到cart里
@@ -119,12 +122,12 @@ $(document).ready(function() {
         $.post('<?= API_URL ?>add_to_cart.php', {
             product_id: <?= $product['id']; ?>,
             size: $('#size').val(),
-            color: $('.color-swatch.selected').css('background-color'),
+            color_code: $('.color-swatch.selected').data('color'),
             quantity: $('#quantity').val()
         }, function(response) {
-            alert('Added to cart!');
+            location.reload();
         }).fail(function() {
-            alert('Error adding to cart.');
+            location.reload();
         });
     });
 

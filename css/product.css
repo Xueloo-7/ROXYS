@@ -67,7 +67,11 @@
 }
 
 .product-size, .product-color {
-    margin-top: 20px;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 20px;
 }
 
 .product-size label, .product-color label {
@@ -94,6 +98,27 @@
     margin: 0 5px;
     border: 1px solid #ccc;
     border-radius: 50%;
+    transition: .2s cubic-bezier(0.15, 0.85, 0.35, 1);
+    position: relative;
+}
+
+/* 选中颜色时放大 */
+.color-swatch.selected {
+    scale: 1.2;
+}
+
+/* 在选中颜色时添加箭头 */
+.color-swatch.selected:after {
+    content: '';
+    position: absolute;
+    top: -10px;  /* 调整箭头与颜色圆点的间距 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;  /* 左侧透明 */
+    border-right: 5px solid transparent;  /* 右侧透明 */
+    border-top: 8px solid #000;  /* 上方的箭头颜色 */
 }
 
 .product-buttons {

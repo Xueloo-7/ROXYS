@@ -4,7 +4,7 @@ require_once __DIR__.'/../database/Model/Product.php';
 require_once __DIR__.'/../database/Model/Cart.php';
 require_once __DIR__.'/../lib/SimplePager.php';
 
-if (!isset($_COOKIE['loggedin']) || $_COOKIE['loggedin'] === 'false') {
+if (!isLoggedIn()) {
     header("Location: " . SCRIPT_URL . 'login?redirect='.urlencode(SCRIPT_URL.'cart'));
     exit;
 }
@@ -20,6 +20,7 @@ try {
             $cart = $cartModel->getCartItemsByUserId($userId);
             $totals = $cartModel->calculateTotals($cart);
 
+            // 存入session是必要的，为了后续payment的使用
             $_SESSION['cart'] = $cart;
             $_SESSION['original_subtotal'] = $totals['original_subtotal'];
             $_SESSION['subtotal'] = $totals['subtotal'];

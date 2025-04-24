@@ -5,7 +5,7 @@ require_once __DIR__.'/../database/Model/OrderHistory.php';
 require_once __DIR__.'/../database/Model/User.php';
 require_once __DIR__.'/../lib/SimplePager.php';
 
-// 获取路由地址，这里是member_listing, order_listing，product_listing
+// 获取路由地址，这里是member_listing/order_listing/product_listing
 $path = getRouteSegment(0);
 
 // 获取当前分页，默认1
@@ -44,8 +44,8 @@ switch($path){
 
         // 附加数据
         foreach ($orders as &$order) {
-            $order['user_name'] = $orderModel->getUserNameByOrderId($order['user_id']);
-            $order['product_name'] = $orderModel->getProductNameByOrderId($order['product_id']);
+            $order['user_name'] = $orderModel->getUserById($order['user_id']['name']);
+            $order['product_name'] = $orderModel->getProductById($order['product_id']['name']);
         }
         $pager->setResult($orders);
 

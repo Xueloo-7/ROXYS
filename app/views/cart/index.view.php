@@ -20,7 +20,7 @@ link_css('cart');
             <?php else: ?>
                 <?php foreach ($cart as $item): ?>
                     <div class="cart-item">
-                        <a href="<?= SCRIPT_URL ?>product_info?id=<?= $item['product_id'] ?>">
+                        <a href="<?= SCRIPT_URL ?>product/<?= $item['product_id'] ?>">
                             <img src="<?= BASE_URL . $item['image_url'] ?>" alt="Product Image">
                         </a>
                         <div class="cart-details">
@@ -34,10 +34,7 @@ link_css('cart');
                             <p class="item-info">Size: <?= htmlspecialchars($item['size'] ?? "none") ?></p>
 
                             <!-- 删除按钮 -->
-                            <form method="POST" style="display:inline;">
-                                <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
-                                <button type="submit" name="remove_item" class="remove-btn" onclick="return confirmDelete()">Remove</button>
-                            </form>
+                            <button class="remove-btn" data-cart-id="<?= $item['id'] ?>" >Remove</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -65,6 +62,34 @@ link_css('cart');
         function confirmDelete() {
             return confirm("Are you sure you want to remove this item from your cart?");
         }
+
+        $(document).ready(function() {
+            $('.remove-btn').click(function(e) {
+                e.preventDefault();
+                if (!confirmDelete()) return;
+
+                const cartId = $(this).data('cart-id');
+                const $button = $(this);
+
+                console.log(cartId)
+
+                $.ajax({
+                    url: '<?= API_URL ?>delete_from_cart.php',
+                    method: 'POST',
+                    data: { cart_id: cartId },
+                    success: function(response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            alert('Failed to remove item: ' + response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Something went wrong. Please try again.');
+                    }
+                });
+            });
+        });
     </script>
 </main>
 

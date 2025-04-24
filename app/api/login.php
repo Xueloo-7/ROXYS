@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__.'/_baseAPI.php';
+require_once __DIR__.'/../config/DatabaseConfig.php';
+require_once __DIR__.'/../database/Database.php';
 require_once __DIR__.'/../database/Model/User.php';
 
 header('Content-Type: application/json');

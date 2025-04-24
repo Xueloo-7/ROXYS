@@ -8,7 +8,7 @@
         <li class="nav-item" data-get=<?= BASE_URL ?>>Home</li>
         <li class="nav-item" data-get="<?= isLoggedIn() ?  'account' :  'login' ?>"><?= isLoggedIn() ? "Account" : "Login"?></li>
         <li class="nav-item" data-get="<?= BASE_URL ?>cart">Shopping Cart</li>
-        <li class="nav-item" data-get="<?= BASE_URL ?>purchase_history">My Orders</li>
+        <li class="nav-item" data-get="<?= BASE_URL ?>order">My Orders</li>
         <li class="nav-item" data-get="<?= BASE_URL ?>product_info/my_wishlist">My Wishlist</li>
         <li class="nav-item" data-get="<?= BASE_URL ?>seller">Seller</li>
         <!-- Admin Only -->

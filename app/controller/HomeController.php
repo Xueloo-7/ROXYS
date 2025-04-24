@@ -43,8 +43,38 @@ $products = $pager->getResult();
 // 将更新后的数据更新进result（不过这里没有更新所以不需要）
 // $pager->setResult($products);
 
-// 获取前五销量的产品
-$top5sales = $productModel->getTop5BySold();
+// 获取路由地址，这里是 / 和 search
+$path = getRouteSegment(0);
 
-// Home Page
-require_once __DIR__.'/../views/home/index.view.php';
+// 如果是搜索界面，获取搜索keyword
+if($path == "search"){
+    $keyword = $_ROUTE_PARAMS['keyword'] ?? "all";
+
+    // 筛选
+    $result = [];
+
+    if ($keyword !== 'all') {
+        foreach ($products as $product) {
+            $nameMatch = stripos($product['name'], $keyword) !== false;
+            $categoryMatch = strtolower($product['category']) === strtolower($keyword);
+
+            if ($nameMatch || $categoryMatch) {
+                $result[] = $product;
+            }
+        }
+    }
+    else{
+        $result = $products;
+    }
+
+    // 搜索页面
+    require_once __DIR__.'/../views/search/index.view.php';
+}
+else{
+    // 否则显示正常页面
+    // 获取前五销量的产品
+    $top5sales = $productModel->getTop5BySold();
+
+    // Home Page
+    require_once __DIR__.'/../views/home/index.view.php';
+}
