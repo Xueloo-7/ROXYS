@@ -5,7 +5,7 @@ require_once __DIR__.'/../database/Model/Review.php';
 require_once __DIR__.'/../../base.php';
 
 if (!isLoggedIn()) {
-    header("Location: " . '/login?redirect='.urlencode('order'));
+    header("Location: " .BASE_URL. '/login?redirect='.urlencode('order'));
     exit;
 }
 

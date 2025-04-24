@@ -30,6 +30,8 @@ $routes = [
     'payment/{status}' => 'controller/PaymentController.php',
     'order' => 'controller/OrderController.php',
     'search/{keyword}' => 'controller/HomeController.php',
+    'account' => 'controller/AccountController.php',
+    'account/{tab}' => 'controller/AccountController.php',
 
     // 更多写法 example
     // 'product/id/{id}' => 'controllers/product.php',

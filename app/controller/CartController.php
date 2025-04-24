@@ -5,7 +5,7 @@ require_once __DIR__.'/../database/Model/Cart.php';
 require_once __DIR__.'/../lib/SimplePager.php';
 
 if (!isLoggedIn()) {
-    header("Location: " . SCRIPT_URL . 'login?redirect='.urlencode(SCRIPT_URL.'cart'));
+    header("Location: " . BASE_URL . 'login?redirect='.urlencode('cart'));
     exit;
 }
 
