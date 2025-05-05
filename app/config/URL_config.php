@@ -40,7 +40,7 @@ define('ROOT_PATH', dirname(__DIR__, 2) . '/');
 define('API_URL', BASE_URL . 'app/api/'); 
 //define('SCRIPT_URL', BASE_URL . 'scripts/');
 define('SCRIPT_URL', BASE_URL);
-define('BASE_URI', "/Web-Assignment-Code/");
+define('BASE_URI', "/ROXYS/");
 
 // Debug
 // echo "<pre>";

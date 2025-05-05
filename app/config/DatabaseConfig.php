@@ -7,8 +7,6 @@ class DatabaseConfig
      *
      * @param string $name 数据库名称，可选值："pandora_database" 或 "xiwangly_database"
      * @return array 包含数据库连接信息的关联数组
-     * 
-     * 这里用phpmyadmin连接，因为远程连接很慢
      */
     public static function getDatabaseConfig(string $name = ''): array
     {

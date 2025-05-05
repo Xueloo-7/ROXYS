@@ -37,9 +37,13 @@
                 </td>
                 <td><?= $user['id'] ?></td>
                 <td>
-                    <img src="<?= BASE_URL.$user['avatar'] ?: 'default.jpg' ?>" 
-                        alt="avatar" 
-                        style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+                    <div class="avatar-container" style="position: relative;">
+                        <img src="<?= BASE_URL.$user['avatar'] ?: 'default.jpg' ?>" 
+                            alt="avatar" 
+                            class="avatar-img"
+                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; cursor: pointer;">
+                        <input type="file" class="avatar-input" accept="image/*" style="display: none;">
+                    </div>
                 </td>
                 <td><input type="text" class="editable" name="name" value="<?= htmlspecialchars($user['name']) ?>"></td>
                 <td><input type="text" class="editable" name="email" value="<?= htmlspecialchars($user['email']) ?>"></td>
@@ -77,24 +81,67 @@
 </div>
 
 <script>
+// Avatar click and preview functionality
+$('.avatar-img').click(function() {
+    $(this).siblings('.avatar-input').click();
+});
+
+$('.avatar-input').change(function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert("Only image files are allowed.");
+        return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert("Max image size is 2MB.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        $(this).siblings('.avatar-img').attr('src', e.target.result);
+    }.bind(this);
+    reader.readAsDataURL(file);
+});
+
 $('.save-btn').click(function(e) {
     e.preventDefault();
     const row = $(this).closest('tr');
     const id = row.data('id');
-    const data = {
-        id: id,
-        name: row.find('[name="name"]').val(),
-        email: row.find('[name="email"]').val(),
-        gender: row.find('[name="gender"]').val(),
-        role: row.find('[name="role"]').val(),
-        address_line: row.find('[name="address_line"]').val(),
-        city: row.find('[name="city"]').val(),
-        postcode: row.find('[name="postcode"]').val()
-    };
-    $.post('<?= API_URL ?>update_user.php', data, function(res) {
-        alert('Save Success');
-    }).fail(function() {
-        alert('Save Failed');
+    
+    // Create FormData object to handle file upload
+    const formData = new FormData();
+    formData.append('id', id);
+    formData.append('name', row.find('[name="name"]').val());
+    formData.append('email', row.find('[name="email"]').val());
+    formData.append('gender', row.find('[name="gender"]').val());
+    formData.append('role', row.find('[name="role"]').val());
+    formData.append('address_line', row.find('[name="address_line"]').val());
+    formData.append('city', row.find('[name="city"]').val());
+    formData.append('postcode', row.find('[name="postcode"]').val());
+
+    // Add avatar file if exists
+    const avatarInput = row.find('.avatar-input')[0];
+    if (avatarInput && avatarInput.files[0]) {
+        formData.append('avatar', avatarInput.files[0]);
+    }
+
+    $.ajax({
+        url: '<?= API_URL ?>update_user.php',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(res) {
+            alert('Save Success');
+            location.reload();
+        },
+        error: function() {
+            alert('Save Failed');
+        }
     });
 });
 

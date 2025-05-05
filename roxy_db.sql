@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2025 at 05:52 AM
+-- Generation Time: Apr 24, 2025 at 06:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,11 +48,19 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `product_id`, `quantity`, `payment_method`, `order_status`, `delivery_detail`, `place_date`, `paid_date`, `shipped_date`, `delivered_date`, `completed_date`, `updated_at`) VALUES
-(1, 2, 1, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43'),
-(2, 2, 6, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43'),
-(3, 2, 26, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43', '2025-04-25 21:15:43'),
-(4, 2, 3, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30'),
-(5, 2, 10, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30', '2025-04-25 21:20:30');
+(16, 1, 4, 1, 'Touch n Go', 'to_review', '', '2024-11-20 16:10:00', '1970-01-01 01:00:00', '1970-01-01 01:00:00', '1970-01-01 01:00:00', '1970-01-01 01:00:00', '2025-04-19 23:11:47'),
+(17, 1, 5, 4, 'Touch n Go', 'to_pay', '', '2024-12-15 18:25:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(18, 1, 6, 2, 'Touch n Go', 'to_receive', '', '2025-01-08 20:40:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(19, 1, 7, 1, 'Touch n Go', 'to_ship', '', '2025-02-12 08:55:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(20, 1, 8, 1, 'Touch n Go', 'to_review', '', '2025-03-05 11:15:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(21, 1, 9, 2, 'Touch n Go', 'to_pay', 'WOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWOWO', '2025-03-25 13:30:00', NULL, NULL, NULL, NULL, '2025-04-19 23:11:47'),
+(28, 1, 8, 2, 'Online Banking', 'to_ship', 'Your package has been delivered![Kuala Lumpur]', '2025-04-19 12:53:00', '2025-04-20 22:52:00', '2025-04-21 22:52:00', '2025-04-24 01:55:00', '2025-04-24 07:53:00', '2025-04-20 12:35:15'),
+(29, 1, 4, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 21:23:53'),
+(30, 1, 4, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 21:23:53'),
+(31, 1, 5, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 15:23:53', '2025-04-24 21:23:53'),
+(32, 1, 4, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 21:24:11'),
+(33, 1, 4, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 21:24:11'),
+(34, 1, 5, 1, 'Touch n Go', 'pending', 'Your package has been delivered![Kuala Lumpur]', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 15:24:11', '2025-04-24 21:24:11');
 
 -- --------------------------------------------------------
 
@@ -68,13 +76,6 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `password_resets`
---
-
-INSERT INTO `password_resets` (`id`, `email`, `code`, `expires_at`, `created_at`, `updated_at`) VALUES
-(11, 'qisheng7615@gmail.com', '557334', '2025-04-26 11:11:06', '2025-04-25 13:00:29', '2025-04-26 03:06:06');
 
 -- --------------------------------------------------------
 
@@ -101,51 +102,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `original_price`, `description`, `stock`, `discount`, `sold`, `details`, `image_url`, `category`) VALUES
-(1, 'Adidas Blue Adjustable Ball Cap', 39.90, 49.9, 'A stylish adjustable cap from Adidas', 100, 20, 0, 'Unisex cap with adjustable strap', 'image\\product\\Caps\\Baseball caps\\Adidas Blue Adjustable Ball Cap.webp', 'cap'),
-(2, 'Ball Cap Dilute Wash Deep Luxe', 42.50, 52, 'Washed deep luxe look for streetwear lovers', 120, 18, 0, 'One size fits most', 'image\\product\\Caps\\Baseball caps\\Ball Cap Dilute Wash Deep Luxe.webp', 'cap'),
-(3, 'Bulk Supplement Black Ball Cap', 35.00, 40, 'Simple and bold black cap', 90, 12, 0, 'Perfect for gym and casual wear', 'image\\product\\Caps\\Baseball caps\\Bulk Supplement Black Ball Cap.webp', 'cap'),
-(4, 'Calvin Klein Pink Ball Cap', 55.90, 65, 'Elegant Calvin Klein pink design', 70, 15, 0, 'Fashion cap with brand logo', 'image\\product\\Caps\\Baseball caps\\Calvin Klein Pink Ball Cap.webp', 'cap'),
-(5, 'Djinns Black Ball Cap', 29.99, 39.99, 'Sleek black ball cap from Djinns', 85, 25, 0, 'Minimalist style with comfort fit', 'image\\product\\Caps\\Baseball caps\\Djinns Black Ball Cap.webp', 'cap'),
-(6, 'J Rise S Cb Mtl Lm Unisex Ball Cap', 44.99, 54.99, 'Unisex cap with modern design', 60, 18, 0, 'Adjustable and breathable', 'image\\product\\Caps\\Baseball caps\\J Rise S Cb Mtl Lm Unisex Ball Cap.webp', 'cap'),
-(7, 'Jordan Green Ball Cap', 48.00, 59, 'Classic green Jordan cap', 110, 19, 0, 'Official Jordan product', 'image\\product\\Caps\\Baseball caps\\Jordan Green Ball Cap.webp', 'cap'),
-(8, 'Men\'s Classic Ball Cap Wash Grey', 32.90, 42, 'Washed grey for a worn-in look', 100, 22, 0, 'Comfortable and timeless', 'image\\product\\Caps\\Baseball caps\\Men\'s Classic Ball Cap Wash Grey.webp', 'cap'),
-(9, 'New Era MLB Blue Ball Cap', 59.90, 69.9, 'Authentic MLB gear from New Era', 90, 14, 0, 'Perfect for baseball fans', 'image\\product\\Caps\\Baseball caps\\New Era MLB Blue Ball Cap.webp', 'cap'),
-(10, 'Under Armour Black Ball Cap', 39.50, 49.5, 'Sporty cap from Under Armour', 75, 15, 0, 'Sweat-resistant material', 'image\\product\\Caps\\Baseball caps\\Under Armour Black Ball Cap.webp', 'cap'),
-(11, 'Decathlon Beanie cap', 25.00, 30, 'Warm and affordable beanie', 150, 10, 0, 'Ideal for winter sports', 'image\\product\\Caps\\Beanie Caps\\Decathlon Beanie cap.webp', 'cap'),
-(12, 'Decathlon Simple Blue Beanie Cap', 22.50, 28, 'Simple and classic beanie design', 160, 12, 0, 'Soft and durable', 'image\\product\\Caps\\Beanie Caps\\Decathlon Simple Blue Beanie Cap.webp', 'cap'),
-(13, 'Equip Black docker Beanie Cap', 27.90, 33, 'Docker-style snug black cap', 80, 10, 0, 'Trendy and comfortable', 'image\\product\\Caps\\Beanie Caps\\Equip Black docker Beanie Cap.webp', 'cap'),
-(14, 'Unisex Fisherman Beanie Cap', 29.00, 36, 'Classic fisherman style', 130, 15, 0, 'Unisex with ribbed pattern', 'image\\product\\Caps\\Beanie Caps\\Unisex Fisherman Beanie Cap.webp', 'cap'),
-(15, 'Unisex Plain Color Slouchy Knitted Beanie Hat', 24.90, 32, 'Slouchy and comfy for casual wear', 120, 22, 0, 'Knitted design with soft wool', 'image\\product\\Caps\\Beanie Caps\\Unisex Plain Color Slouchy Knitted Beanie Hat.webp', 'cap'),
-(16, 'Brixton Brown Flatcap Cap', 34.50, 42, 'Vintage brown flatcap', 95, 18, 0, 'Elegant style for casual/formal', 'image\\product\\Caps\\Flat Caps\\Brixton Brown Flatcap Cap.webp', 'cap'),
-(17, 'Jaxon & James Green Flatcap Cap', 38.00, 45, 'Classic green flatcap', 105, 16, 0, 'Timeless English look', 'image\\product\\Caps\\Flat Caps\\Jaxon & James Green Flatcap Cap.webp', 'cap'),
-(18, 'Lacoste Blue Flatcap Cap', 62.90, 75, 'Premium flatcap from Lacoste', 60, 16, 0, 'Luxury and comfort combined', 'image\\product\\Caps\\Flat Caps\\Lacoste Blue Flatcap Cap.webp', 'cap'),
-(19, 'Men\'s Vintage Newsboy Flatcap Cap', 33.00, 40, 'Newsboy style with a vintage touch', 100, 15, 0, 'Great for formal and retro fits', 'image\\product\\Caps\\Flat Caps\\Men\'s Vintage Newsboy Flatcap Cap.webp', 'cap'),
-(20, 'Puma Black Flatcap Cap', 44.00, 55, 'Modern flatcap from Puma', 85, 20, 0, 'Sports meets classic', 'image\\product\\Caps\\Flat Caps\\Puma Black Flatcap Cap.webp', 'cap'),
-(21, 'Stetson Black Flatcap Cap', 68.90, 80, 'Premium black flatcap by Stetson', 50, 14, 0, 'Iconic brand heritage', 'image\\product\\Caps\\Flat Caps\\Stetson Black Flatcap Cap.webp', 'cap'),
-(22, 'Adidas Classics 3 woman T-Shirt', 49.90, 60, 'Classic Adidas tee for women', 100, 17, 0, 'Comfortable and breathable cotton fabric', 'image\\product\\Clothes\\Adidas Classics 3 woman T-Shirt.webp', 'clothes'),
-(23, 'Adidas Classics 4 woman T-Shirt', 51.50, 65, 'Updated design with signature 3-stripes', 90, 21, 0, 'Modern fit for active lifestyle', 'image\\product\\Clothes\\Adidas Classics 4 woman T-Shirt.webp', 'clothes'),
-(24, 'Adidas Floral Loose Woman T-Shirt', 54.90, 70, 'Floral pattern loose fit Adidas shirt', 80, 22, 0, 'Floral themed casual wear', 'image\\product\\Clothes\\Adidas Floral Loose Woman T-Shirt.webp', 'clothes'),
-(25, 'Adidas Originals Xterwer Woman T-Shirt', 59.00, 75, 'Exclusive Xterwer design by Adidas', 75, 21, 0, 'Limited edition release', 'image\\product\\Clothes\\Adidas Originals Xterwer Woman T-Shirt.webp', 'clothes'),
-(26, 'Blue Adidas T-Shirt', 47.90, 55, 'Simple blue Adidas shirt', 120, 13, 0, 'Essential wardrobe item', 'image\\product\\Clothes\\Blue Adidas T-Shirt.jpeg', 'clothes'),
-(27, 'Blue Long sleeve jacket for woman', 85.00, 105, 'Stylish blue long sleeve jacket', 60, 19, 0, 'Great for chilly evenings', 'image\\product\\Clothes\\Blue Long sleeve jacket for woman.webp', 'clothes'),
-(28, 'Long sleeve jacket for woman', 79.90, 95, 'Versatile jacket for daily wear', 55, 16, 0, 'Durable and elegant design', 'image\\product\\Clothes\\long sleeve jacket for woman.webp', 'clothes'),
-(29, 'Nike EQT Long Sleeve Graphic Tee For men', 66.90, 80, 'Nike EQT series with bold graphics', 70, 17, 0, 'Men’s casual graphic tee', 'image\\product\\Clothes\\Nike EQT Long Sleeve Graphic Tee For men.webp', 'clothes'),
-(30, 'Puma Ess Logo Solid Hooded Jacket', 92.50, 110, 'Essentials collection by Puma', 40, 16, 0, 'Logo-stamped functional hoodie', 'image\\product\\Clothes\\Puma Ess Logo Solid Hooded Jacket.webp', 'clothes'),
-(31, 'Puma Long Sleeve Zip Up Black White Mens Hooded Track Jacket', 99.90, 125, 'High performance track jacket', 50, 20, 0, 'Sleek monochrome colorway', 'image\\product\\Clothes\\Puma Long Sleeve Zip Up Black White Mens Hooded Track Jacket.webp', 'clothes'),
-(32, 'Puma Originals Stripe Long Sleeve T-Shirt', 55.00, 65, 'Striped Puma Originals series', 85, 15, 0, 'Eye-catching vintage look', 'image\\product\\Clothes\\Puma Originals Stripe Long Sleeve T-Shirt.webp', 'clothes'),
-(33, 'Red Hooded Long-Sleeved Jacket', 77.00, 90, 'Bold red jacket with hood', 65, 14, 0, 'Pop of color for your wardrobe', 'image\\product\\Clothes\\Red Hooded Long-Sleeved Jacket.webp', 'clothes'),
-(34, 'Gucci Belted pleated cotton dresses', 299.00, 350, 'High-end Gucci cotton dress', 10, 15, 0, 'Belted pleats with elegance', 'image\\product\\Dresses\\Gucci Belted pleated cotton dresses.webp', 'clothes'),
-(35, 'HuYa dress', 45.00, 60, 'Simple and elegant HuYa design', 70, 25, 0, 'Budget-friendly formal wear', 'image\\product\\Dresses\\HuYa dress.jpeg', 'clothes'),
-(36, 'Pink Floral Asymmetrical Waist Split Midi Dress', 66.00, 85, 'Elegant asymmetrical floral midi', 45, 22, 0, 'Great for casual dates or events', 'image\\product\\Dresses\\Pink Floral Asymmetrical Waist Split Midi Dress.webp', 'clothes'),
-(37, 'product5', 39.90, 50, 'Lightweight and flowy dress', 100, 20, 0, 'Casual minimalist style', 'image\\product\\Dresses\\product5.webp', 'clothes'),
-(38, 'Roland Mouret Cady midi dress Woman dress', 189.00, 230, 'Designer mid-length dress', 15, 18, 0, 'Sleek lines and rich color', 'image\\product\\Dresses\\Roland Mouret Cady midi dress Woman dress.webp', 'clothes'),
-(39, 'Solid Fold Pleated Cami Dress', 58.00, 70, 'Casual pleated cami dress', 80, 17, 0, 'Solid color with elegant folds', 'image\\product\\Dresses\\Solid Fold Pleated Cami Dress.webp', 'clothes'),
-(40, 'women dress how to wear example1', 35.00, 50, 'Example lookbook dress', 60, 30, 0, 'Model reference outfit', 'image\\product\\Dresses\\women dress how to wear example1.jpeg', 'clothes'),
-(41, 'women dress how to wear example2', 36.00, 52, 'Lookbook outfit inspiration', 55, 31, 0, 'Style and fit guide', 'image\\product\\Dresses\\women dress how to wear example2.webp', 'clothes'),
-(42, 'women dress how to wear example3', 38.00, 55, 'Lookbook dress series', 50, 31, 0, 'Wardrobe suggestion outfit', 'image\\product\\Dresses\\women dress how to wear example3.jpg', 'clothes'),
-(43, 'Women\'s Solid Color Spaghetti Strap Minimalist Ruched Casual Dress', 62.00, 75, 'Minimalist spaghetti strap dress', 40, 17, 0, 'Form-fitting and casual', 'image\\product\\Dresses\\Women\'s Solid Color Spaghetti Strap Minimalist Ruched Casual Dress.webp', 'clothes'),
-(44, 'Women\'s Spring Autumn Casual Comfortable Waist Decor dress', 66.50, 85, 'Transitional seasonal dress', 45, 22, 0, 'Comfortable with waist accent', 'image\\product\\Dresses\\Women\'s Spring Autumn Casual Comfortable Waist Decor dress.webp', 'clothes'),
-(45, 'Zimmermann Wylie belted dresses', 259.00, 310, 'Zimmermann signature belted line', 20, 16, 0, 'Luxury brand piece', 'image\\product\\Dresses\\Zimmermann Wylie belted dresses.webp', 'clothes');
+(3, 'Gucci Belted Pleated Dress', 999.99, 999.99, 'Elegant Gucci dress with pleated design.', 50, 20, 5650, 'Function: Reinforced with abrasion-resistant fibers to withstand rugged conditions.\nClosing method: Lace-up closure adds security and a sporty look.\nStyle: Minimalist aesthetic for a timeless fashion vibe.\nSeason: Suitable for cool and mild seasons.\nFlat cap style: Circular flat brim gives a bold statement.\nOccasion: Designed for art fairs, weekend walks, or streetwear looks.\",\"https://picsum.photos/seed/3/300/300,https://picsum.photos/seed/4/300/300', 'image/product/Dresses/Gucci Belted pleated cotton dresses.webp', 'dress'),
+(4, 'Men\'s Fashionable Long Pants', 59.99, 79.99, 'Stylish long pants for men.', 120, 25, 87, 'Function: Crafted for flexibility and resistance to wear, ensuring comfort and longevity.\r\nClosing method: Classic lace-up system for snug fit.\r\nStyle: Urban-inspired, tailored for trend-conscious individuals.\r\nSeason: Designed for transitional weather.\r\nFlat cap style: Smooth round shape complements most face shapes.\r\nOccasion: Ideal for fashion shoots, events, or casual hangouts.\",\"https://picsum.photos/seed/5/300/300,https://picsum.photos/seed/6/300/300', 'image/product/LongShortPants/Long Pants/Men\'s Fashionable pants.webp', 'pants'),
+(5, 'Rollerblade Grey Men\'s Shorts', 34.99, 49.99, 'Casual grey shorts with pockets.', 90, 30, 22, 'Function: Durable design suitable for outdoor activity and all-day wear.\r\nClosing method: Adjustable lace system for a personalized fit.\r\nStyle: Modern cut with a vintage twist.\r\nSeason: Versatile for spring and fall.\r\nFlat cap style: Round flat cap with reinforced seams.\r\nOccasion: Wear it to markets, campus, or creative events.\",\"https://picsum.photos/seed/7/3000/300,https://picsum.photos/seed/8/200/320', 'image/product/LongShortPants/Short pants/Rollerblade Grey Men\'s Shorts with Pocket Grey.webp', 'pants'),
+(6, 'Adidas Boxer Underwear for Men', 89.99, 129.99, 'High-quality shoes with detailed finishing.', 70, 20, 18, 'Function: Combines comfort with long-term endurance in daily use.\r\nClosing method: Secure lace-up entry.\r\nStyle: Contemporary cap with subtle urban cues.\r\nSeason: Meant for sunny or breezy weather.\r\nFlat cap style: Clean round silhouette.\r\nOccasion: Pair it with smart-casual outfits or outdoor wear.\",\"https://picsum.photos/seed/9/300/300,https://picsum.photos/seed/10/300/300', 'image\\product\\Underclothes\\Men\'s\\Adidas Boxer Underwear for Men.jpeg', 'underclothes'),
+(7, 'Christian Louboutin High Heels', 999.99, 1299.99, 'Luxury high heels by Christian Louboutin.', 40, 23, 10, 'Function: Engineered to resist friction and surface damage.\r\nClosing method: Easy-to-adjust laces ensure a perfect fit.\r\nStyle: Refined streetwear influence.\r\nSeason: Best for spring-to-summer transition.\r\nFlat cap style: Balanced circle shape for comfort and style.\r\nOccasion: Street fashion, music festivals, or quick errands.\",\"https://picsum.photos/seed/11/300/300,https://picsum.photos/seed/12/300/300', 'image/product/Shoes/HighHeels/Christian Louboutin Sourse high heels.webp', 'shoe'),
+(8, 'Dior Running Shoes', 299.99, 399.99, 'Premium running shoes by Dior.', 80, 25, 523, 'Function: Wear resistant\r\nClosing method: Lace up\r\nStyle: Sports\r\nSeason: Spring and Autumn\r\nShoe toe style: Round toe\r\nOccasion: Sports and Leisure', 'image/product/Shoes/RunningShoes/dior shoes.jpeg', 'shoe'),
+(9, 'Adidas Women\'s Ankle Socks', 19.99, 29.99, 'Comfortable ankle socks from Adidas.', 200, 33, 50, 'Function: Made with materials that withstand intensive daily use.\r\nClosing method: Customizable lacing structure.\r\nStyle: Urban cool with minimalist touches.\r\nSeason: Great for variable temperatures.\r\nFlat cap style: Neutral round frame.\r\nOccasion: Use it at cafes, trips, or city walks.\",\"https://picsum.photos/seed/13/300/300,https://picsum.photos/seed/14/300/300', 'image/product/Socks/Women\'s/Adidas Women\'s Anikle Socks.jpeg', 'socks'),
+(14, 'test product', 79.99, 0, 'test', 100, 10, 0, 'test', 'test', 'clothes');
 
 -- --------------------------------------------------------
 
@@ -158,6 +122,24 @@ CREATE TABLE `product_color` (
   `product_id` int(11) NOT NULL,
   `color_code` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_color`
+--
+
+INSERT INTO `product_color` (`id`, `product_id`, `color_code`) VALUES
+(4, 4, '#000000'),
+(5, 5, '#808080'),
+(6, 6, '#B22222'),
+(7, 7, '#FF1493'),
+(8, 8, '#1E90FF'),
+(9, 9, '#000000'),
+(11, 5, '#8B4513'),
+(47, 3, '#FFD700'),
+(48, 14, '#000000'),
+(49, 14, '#FFFFFF'),
+(50, 14, '#2596be'),
+(51, 14, '#ea8f3c');
 
 -- --------------------------------------------------------
 
@@ -179,7 +161,19 @@ CREATE TABLE `product_review` (
 --
 
 INSERT INTO `product_review` (`id`, `product_id`, `user_id`, `rating`, `review_text`, `created_at`) VALUES
-(24, 1, 15, 5.0, 'This is a review!', '2025-04-25 13:39:21');
+(3, 3, 2, 4.8, 'Gucci never disappoints, stunning dress.', '2025-03-17 12:00:12'),
+(4, 4, 3, 4.6, 'Good fit, material feels premium.', '2025-03-17 12:00:12'),
+(5, 5, 2, 4.2, 'Nice shorts, but a bit loose.', '2025-03-17 12:00:12'),
+(6, 6, 1, 4.5, 'Excellent finishing on these shoes.', '2025-03-17 12:00:12'),
+(7, 7, 2, 5.0, 'Best heels ever, worth every penny!', '2025-03-17 12:00:12'),
+(8, 8, 3, 4.9, 'Super comfortable for running.', '2025-03-17 12:00:12'),
+(9, 9, 2, 4.3, 'Decent quality socks, very soft.', '2025-03-17 12:00:12'),
+(15, 3, 2, 1.0, 's', '2025-04-21 16:16:45'),
+(16, 3, 16, 1.0, 'Wow this is so beautiful, but i dont want to but hahaha', '2025-04-21 16:18:04'),
+(17, 8, 2, 5.0, '我喜欢这个颜色~', '2025-04-21 16:44:23'),
+(18, 4, 2, 4.0, '这是一条评论！', '2025-04-24 11:29:26'),
+(19, 4, 2, 5.0, '这是第二条评论！', '2025-04-24 11:29:37'),
+(20, 4, 1, 3.0, '换了个人再来评论！', '2025-04-24 11:29:57');
 
 -- --------------------------------------------------------
 
@@ -192,6 +186,30 @@ CREATE TABLE `product_size` (
   `product_id` int(11) NOT NULL,
   `size` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_size`
+--
+
+INSERT INTO `product_size` (`id`, `product_id`, `size`) VALUES
+(55, 4, 30),
+(56, 4, 32),
+(57, 4, 34),
+(58, 5, 28),
+(59, 5, 30),
+(60, 5, 32),
+(61, 6, 40),
+(62, 6, 42),
+(63, 7, 38),
+(64, 7, 40),
+(65, 8, 39),
+(66, 8, 41),
+(67, 8, 43),
+(68, 9, 1),
+(82, 3, 6),
+(83, 14, 8),
+(84, 14, 8),
+(85, 14, 7);
 
 -- --------------------------------------------------------
 
@@ -213,8 +231,9 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`id`, `user_id`, `product_id`, `quantity`, `color_code`, `size`) VALUES
-(68, 2, 10, 1, NULL, ''),
-(69, 2, 3, 1, NULL, '');
+(56, 1, 4, 1, '#000000', '32'),
+(57, 1, 4, 1, '#000000', '30'),
+(58, 1, 5, 1, '#8B4513', '28');
 
 -- --------------------------------------------------------
 
@@ -232,9 +251,9 @@ CREATE TABLE `users` (
   `avatar` varchar(100) DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   `role` varchar(20) NOT NULL DEFAULT 'user',
-  `address_line` varchar(255) DEFAULT NULL,
-  `city` varchar(100) DEFAULT NULL,
-  `postcode` varchar(20) DEFAULT NULL,
+  `address_line` varchar(255) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `postcode` varchar(20) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -244,12 +263,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `gender`, `avatar`, `active`, `role`, `address_line`, `city`, `postcode`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$T5cAq0nJxO7ylo560DjG9OwuVDX5AQ703A82ExGnUKKQUL72vILSG', '6a065f4998a9201d201dc3445485b31e', 'male', 'image/avatar/admin.jpg', 1, 'admin', '6, lorong ria 2, Taman Bunga Raya', 'Setapak', '53000', '2025-03-31 05:32:33', '2025-04-26 11:29:18'),
-(2, '芙宁娜', 'furina@gmail.com', '$2y$10$BOzoIzLfJcssk2i76oMhrOCRDKAMLRKXdfaBqhKb9yi5dxDdPlY46', 'f82661f3e6459d43d4fbe33470a0f6f8', 'Female', '/image/avatar/芙宁娜.jpg', 0, 'user', '', '', '', '2025-04-09 17:05:24', '2025-04-25 21:38:05'),
-(15, 'Pandora', 'pandora.va7@gmail.com', '$2y$10$ilpOrXOVfgT7wNIRT5RWmuWcZMhphgdflQOsA58mcLtiqvcauC5/u', '1eb92080e1ec76eaf791c0da86d56796', 'other', '/image/avatar/Pandora.jpg', 1, 'user', '6, lorong ria 2, Taman Bunga Raya', 'Setapak', '53000', '2025-04-19 15:05:20', '2025-04-26 11:15:04'),
-(16, 'Jacky', 'jackyloh5775@gmail.com', '$2y$10$p8DjWMaJwFlbTfjXgl1A2elylkSJ15IgfpYB8aactxoU/jROAP28u', 'b107b375dd62c3ca3bb04ba6a5c33505', NULL, 'image/avatar/Jacky.jpg', 1, 'user', '', '', '', '2025-04-21 15:33:14', '2025-04-22 00:30:00'),
-(18, '迷迷', 'mimi@gmail.com', '$2y$10$ShB8YQlcy5f.1hhxxEkiG.H5OybjTptC8mMcHEFJcbQ2o5L3Yc3mi', 'cbf0fa8fd4d42e48c2b8986377123be0', 'female', 'image/avatar/迷迷.jpg', 1, 'user', '星核精的家', '翁法罗斯', '银河', '2025-04-24 19:15:08', '2025-04-25 01:51:06'),
-(19, 'qisheng', 'qisheng7615@gmail.com', '$2y$10$xo1lkFTMNEn1syAN.lq4I.P9XUTlDSf8vI9yIn1BYme2WhmwjNg.i', 'e87ed381ddf5dc974ce9f75e7b970937', 'male', 'image/avatar/qisheng.jpg', 0, 'user', '18 Jalan Pelangi 20', 'Tanjong Sepat', '42800', '2025-04-25 10:06:34', '2025-04-25 16:12:13');
+(1, 'admin', 'admin@gmail.com', '$2y$10$T5cAq0nJxO7ylo560DjG9OwuVDX5AQ703A82ExGnUKKQUL72vILSG', '5865e4c8e2b025ea884253c3faa5aca7', 'male', '/image/avatar/admin.jpg', 1, 'admin', '6, lorong ria 2, Taman Bunga Raya', 'Setapak', '53000', '2025-03-31 05:32:33', '2025-04-25 00:17:14'),
+(2, '芙宁娜', 'furina@gmail.com', '$2y$10$BOzoIzLfJcssk2i76oMhrOCRDKAMLRKXdfaBqhKb9yi5dxDdPlY46', '517431884ba60efdd5b8cd374dca08cb', 'Female', '/image/avatar/芙宁娜.jpg', 1, 'user', '', '', '', '2025-04-09 17:05:24', '2025-04-24 19:52:07'),
+(15, 'Pandora', 'pandora.va7@gmail.com', '$2y$10$7i9p./ydlVcz3NWr0Lc/Re0.66g4YEQvpuhWMXO4tlqDPkLeLTGRS', '374544bac1bfcc3b73f8a1427fafad52', 'other', '/image/avatar/Pandora.jpg', 1, 'user', '6, lorong ria 2, Taman Bunga Raya', 'Setapak', '53000', '2025-04-19 15:05:20', '2025-04-21 21:32:11'),
+(16, 'Jacky', 'jackyloh5775@gmail.com', '$2y$10$p8DjWMaJwFlbTfjXgl1A2elylkSJ15IgfpYB8aactxoU/jROAP28u', 'b107b375dd62c3ca3bb04ba6a5c33505', NULL, 'image/avatar/Jacky.jpg', 1, 'user', '', '', '', '2025-04-21 15:33:14', '2025-04-22 00:30:00');
 
 --
 -- Indexes for dumped tables
@@ -320,49 +337,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `product_color`
 --
 ALTER TABLE `product_color`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `product_review`
 --
 ALTER TABLE `product_review`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `product_size`
 --
 ALTER TABLE `product_size`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

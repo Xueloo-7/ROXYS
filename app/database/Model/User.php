@@ -86,6 +86,13 @@ class User extends BaseModel{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findById($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // 切换封锁状态
     public function toggleBlock($id)
     {

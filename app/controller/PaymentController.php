@@ -63,14 +63,23 @@ else if ($status == "success") {
                 $cartModel->removeItem($user_id, $item['id']);
             }
 
+            // Store the total payable before clearing session
+            $final_total_payable = $_SESSION['total_payable'];
+
             // 清理 session
-            $total_payable = $_SESSION['total_payable'];
             unset($_SESSION['cart'], $_SESSION['original_subtotal'], $_SESSION['subtotal'], $_SESSION['delivery_fee'], $_SESSION['total_payable'], $_SESSION['payment_method']);
 
-            // 最终页面渲染
-            require_once __DIR__.'/../views/payment/success.view.php';
+            // Set the total payable for the success view
+            $_SESSION['total_payable'] = $final_total_payable;
+
+            // 成功后跳转
+            header('Location: '.BASE_URL.'payment/success');
+            exit;
         } else {
             echo "结账失败，请稍后再试。";
         }
     }
+
+    // 最终页面渲染
+    require_once __DIR__.'/../views/payment/success.view.php';
 }
